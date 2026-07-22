@@ -2,7 +2,30 @@ import { CoreCapabilities } from "@/components/sections/home/CoreCapabilities";
 import { WhyTrimax } from "@/components/sections/home/WhyTrimax";
 import { FeaturedProjects } from "@/components/sections/home/FeaturedProjects";
 import { AboutHero } from "@/components/sections/about/AboutHero";
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
+
+  return {
+    title: t('Home.title'),
+    description: t('Home.description'),
+    alternates: {
+      canonical: `https://vdiv.com/${locale}`,
+      languages: {
+        'en': `https://vdiv.com/en`,
+        'ar': `https://vdiv.com/ar`,
+      },
+    },
+    openGraph: {
+      title: t('Home.title'),
+      description: t('Home.description'),
+      url: `https://vdiv.com/${locale}`,
+    }
+  };
+}
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

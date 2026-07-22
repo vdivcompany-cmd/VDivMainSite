@@ -39,11 +39,12 @@ export function ProjectsBackground() {
     // Ring shape removed per user request
 
     // Animation Loop
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
     let animationFrameId: number;
 
     function animate() {
-        const elapsedTime = clock.getElapsedTime();
+        timer.update();
+        const elapsedTime = timer.getElapsed();
         
         // core removed
         // ring removed

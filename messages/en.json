@@ -210,5 +210,23 @@
     "sidebar_hq": "VDiv HQ, Node Alpha",
     "sidebar_address": "Invalid coordinates or transmission protocol",
     "sidebar_contact": "contact@vdiv.tech / +49 (0) 30 1234 5678"
+  },
+  "Metadata": {
+    "Home": {
+      "title": "Home",
+      "description": "vDiv - A leading software development and digital solutions company providing advanced systems to enhance enterprise efficiency and digital transformation."
+    },
+    "About": {
+      "title": "About Us",
+      "description": "Learn about vDiv, the leading provider of integrated software solutions, and our vision in shaping the future of technology for enterprises."
+    },
+    "Projects": {
+      "title": "Projects",
+      "description": "Discover the latest vDiv projects and software systems we have developed for our clients across various sectors."
+    },
+    "Contact": {
+      "title": "Contact Us",
+      "description": "Get in touch with the vDiv team to start your next software project. We are here to help you achieve your digital goals."
+    }
   }
 }

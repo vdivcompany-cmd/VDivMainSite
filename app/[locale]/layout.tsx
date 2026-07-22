@@ -2,6 +2,7 @@ import '@/app/globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
 import { ThemeProvider } from 'next-themes';
 import { Navbar } from '@/components/layout/Navbar';
@@ -15,6 +16,26 @@ const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrai
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  
+  return {
+    metadataBase: new URL('https://vdiv.com'),
+    title: {
+      template: '%s | vDiv',
+      default: 'vDiv',
+    },
+    openGraph: {
+      siteName: 'vDiv',
+      type: 'website',
+      locale: locale === 'ar' ? 'ar_SA' : 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+    }
+  };
 }
 
 export default async function LocaleLayout({

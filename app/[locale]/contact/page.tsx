@@ -2,7 +2,30 @@ import { ContactBackground } from "@/components/sections/contact/ContactBackgrou
 import { ContactHeader } from "@/components/sections/contact/ContactHeader";
 import { ContactForm } from "@/components/sections/contact/ContactForm";
 import { ContactSidebar } from "@/components/sections/contact/ContactSidebar";
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
+
+  return {
+    title: t('Contact.title'),
+    description: t('Contact.description'),
+    alternates: {
+      canonical: `https://vdiv.com/${locale}/contact`,
+      languages: {
+        'en': `https://vdiv.com/en/contact`,
+        'ar': `https://vdiv.com/ar/contact`,
+      },
+    },
+    openGraph: {
+      title: t('Contact.title'),
+      description: t('Contact.description'),
+      url: `https://vdiv.com/${locale}/contact`,
+    }
+  };
+}
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

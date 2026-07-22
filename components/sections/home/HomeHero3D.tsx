@@ -56,11 +56,12 @@ export function HomeHero3D() {
     ring.rotation.x = Math.PI / 2;
     group.add(ring);
 
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
     let animationFrameId: number;
 
     function animate() {
-        const elapsedTime = clock.getElapsedTime();
+        timer.update();
+        const elapsedTime = timer.getElapsed();
         
         core.rotation.y = elapsedTime * 0.5;
         core.rotation.x = elapsedTime * 0.3;
