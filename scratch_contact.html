@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VDiv | Contact Engineering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Geist:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Hanken+Grotesk:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#4e378a",
+                    "on-secondary": "#342b4b",
+                    "outline-variant": "#494551",
+                    "tertiary-container": "#c9a74d",
+                    "on-tertiary-container": "#503d00",
+                    "primary": "#cfbdff",
+                    "surface-dim": "#141318",
+                    "outline": "#948e9c",
+                    "on-surface-variant": "#cbc4d2",
+                    "secondary": "#cdc0e8",
+                    "surface-container": "#201f24",
+                    "inverse-on-surface": "#312f35",
+                    "primary-container": "#6750a4",
+                    "on-primary-fixed": "#22005d",
+                    "inverse-surface": "#e6e1e9",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-primary": "#371e72",
+                    "on-tertiary": "#3e2e00",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed": "#ffdf93",
+                    "surface-container-highest": "#36343a",
+                    "tertiary-fixed-dim": "#e7c365",
+                    "surface-tint": "#cfbdff",
+                    "secondary-fixed-dim": "#cdc0e8",
+                    "on-secondary-fixed-variant": "#4a4263",
+                    "on-secondary-container": "#beb3da",
+                    "surface-bright": "#3a383e",
+                    "surface": "#141318",
+                    "tertiary": "#e7c365",
+                    "on-background": "#e6e1e9",
+                    "background": "#141318",
+                    "surface-variant": "#36343a",
+                    "on-tertiary-fixed-variant": "#594400",
+                    "primary-fixed": "#e9ddff",
+                    "on-secondary-fixed": "#1e1635",
+                    "error-container": "#93000a",
+                    "on-surface": "#e6e1e9",
+                    "surface-container-low": "#1c1b20",
+                    "surface-container-high": "#2b292f",
+                    "surface-container-lowest": "#0f0d13",
+                    "secondary-fixed": "#e8ddff",
+                    "primary-fixed-dim": "#cfbdff",
+                    "secondary-container": "#4d4465",
+                    "on-primary-container": "#e0d2ff",
+                    "inverse-primary": "#6750a4",
+                    "on-error-container": "#ffdad6",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "base": "4px",
+                    "margin-desktop": "64px",
+                    "lg": "24px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-sm": ["Geist"],
+                    "body-md": ["Geist"],
+                    "technical-data": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Geist"],
+                    "label-caps": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "display-lg": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "technical-data": ["13px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .circuit-node {
+            position: relative;
+        }
+        .circuit-node::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #cfbdff;
+            border-radius: 50%;
+            top: 0;
+            right: 0;
+            box-shadow: 0 0 8px #cfbdff;
+        }
+        .glass-card {
+            background: rgba(20, 19, 24, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(207, 188, 255, 0.1);
+        }
+        .input-underline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            width: 0%;
+            background: #cfbdff;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .input-group:focus-within .input-underline {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30 scroll-smooth">
+<!-- Global Background Shader -->
+<div class="fixed inset-0 z-0 pointer-events-none opacity-40">
+<!-- STITCH_THREEJS_START:ANIMATION_11 class="w-full h-full" -->
+<div class="w-full h-full" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_11" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_11');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const container = document.getElementById('threejs-container') || document.body;
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+camera.position.z = 5;
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+// Lights
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0xf2ca50, 1.5);
+pointLight.position.set(5, 5, 5);
+scene.add(pointLight);
+
+// Geometry: A central "Engine" or core representing technology
+const group = new THREE.Group();
+scene.add(group);
+
+const coreGeometry = new THREE.OctahedronGeometry(1.5, 0);
+const coreMaterial = new THREE.MeshPhongMaterial({ 
+    color: 0xf2ca50, 
+    wireframe: true,
+    emissive: 0xf2ca50,
+    emissiveIntensity: 0.2
+});
+const core = new THREE.Mesh(coreGeometry, coreMaterial);
+group.add(core);
+
+// Surrounding ring
+const ringGeometry = new THREE.TorusGeometry(2.5, 0.05, 16, 100);
+const ringMaterial = new THREE.MeshPhongMaterial({ color: 0x00eefc });
+const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+ring.rotation.x = Math.PI / 2;
+group.add(ring);
+
+// Animation Loop
+const clock = new THREE.Clock();
+
+function animate() {
+    const elapsedTime = clock.getElapsedTime();
+    
+    core.rotation.y = elapsedTime * 0.5;
+    core.rotation.x = elapsedTime * 0.3;
+    
+    ring.rotation.z = elapsedTime * 0.2;
+    ring.rotation.x = Math.PI / 2 + Math.sin(elapsedTime * 0.5) * 0.2;
+    
+    group.rotation.y = Math.sin(elapsedTime * 0.2) * 0.1;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_11 -->
+</div>
+<!-- Navigation Shell -->
+<nav class="fixed top-0 w-full z-[100] h-16 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 dark:border-primary/10 shadow-sm flex items-center justify-between px-margin-mobile md:px-margin-desktop">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary dark:text-primary-fixed-dim">VDiv</div>
+<div class="hidden md:flex items-center gap-xl">
+<a class="font-body-md text-on-surface-variant/80 hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-body-md text-on-surface-variant/80 hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-body-md text-on-surface-variant/80 hover:text-primary transition-colors" href="#">Projects</a>
+<a class="font-body-md text-primary border-b-2 border-primary pb-1" href="#">Contact Us</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-base hover:bg-primary/10 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-primary">dark_mode</span>
+</button>
+<button class="p-base hover:bg-primary/10 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-primary">translate</span>
+</button>
+</div>
+</nav>
+<main class="relative z-10 pt-32 pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<!-- Hero Header -->
+<header class="mb-xl text-center md:text-left">
+<p class="font-label-caps text-label-caps text-primary mb-sm">ESTABLISH CONNECTIVITY</p>
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface max-w-2xl leading-tight">
+                Precision Interface for <span class="text-primary italic">Global Systems.</span>
+</h1>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Contact Form Section -->
+<section class="lg:col-span-7 glass-card p-xl rounded-xl circuit-node relative">
+<div class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-primary mb-base">Transmission Portal</h2>
+<p class="font-body-md text-on-surface-variant">Synchronize your inquiry with our engineering team.</p>
+</div>
+<form class="space-y-lg" id="contact-form">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="input-group relative">
+<label class="font-technical-data text-technical-data text-on-surface-variant block mb-base">IDENTIFIER_NAME</label>
+<input class="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 py-md px-0 focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300" placeholder="E.g. Alan Turing" type="text"/>
+<div class="input-underline"></div>
+</div>
+<div class="input-group relative">
+<label class="font-technical-data text-technical-data text-on-surface-variant block mb-base">COMMS_ADDRESS</label>
+<input class="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 py-md px-0 focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300" placeholder="name@domain.tech" type="email"/>
+<div class="input-underline"></div>
+</div>
+</div>
+<div class="input-group relative">
+<label class="font-technical-data text-technical-data text-on-surface-variant block mb-base">SERVICE_CATEGORY</label>
+<select class="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 py-md px-0 focus:ring-0 text-on-surface appearance-none">
+<option>Precision Architecture</option>
+<option>System Optimization</option>
+<option>Research &amp; Development</option>
+<option>Infrastructure Scaling</option>
+</select>
+<div class="input-underline"></div>
+</div>
+<div class="input-group relative">
+<label class="font-technical-data text-technical-data text-on-surface-variant block mb-base">DATA_PAYLOAD</label>
+<textarea class="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 py-md px-0 focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300 resize-none" placeholder="Describe the project scope or technical challenge..." rows="4"></textarea>
+<div class="input-underline"></div>
+</div>
+<button class="group relative px-xl py-md bg-primary text-on-primary font-technical-data text-technical-data font-bold rounded-lg overflow-hidden transition-transform duration-200 active:scale-95 flex items-center justify-center gap-sm" type="submit">
+                        INITIATE_UPLINK
+                        <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">send</span>
+</button>
+</form>
+</section>
+<!-- Sidebar Info & 3D Node -->
+<aside class="lg:col-span-5 space-y-gutter">
+<!-- 3D Interactive Location Node -->
+<div class="glass-card rounded-xl overflow-hidden h-[360px] relative border border-primary/20 group">
+<div class="absolute inset-0 z-0">
+<!-- STITCH_SHADER_START:ANIMATION_10 class="w-full h-full" -->
+<div class="w-full h-full" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_10" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_10');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Create a technical circuit-like grid pulse
+    float grid = sin(uv.x * 50.0 + u_time) * sin(uv.y * 50.0 + u_time);
+    grid = smoothstep(0.9, 1.0, grid);
+    
+    // Flowing digital waves
+    float wave = sin(uv.x * 10.0 + u_time * 0.5) * 0.5 + 0.5;
+    float wave2 = cos(uv.y * 8.0 - u_time * 0.3) * 0.5 + 0.5;
+    
+    vec3 color1 = vec3(0.06, 0.08, 0.10); // Surface-dim dark
+    vec3 color2 = vec3(0.95, 0.79, 0.31); // Primary Gold (normalized)
+    vec3 color3 = vec3(0.0, 0.93, 0.98); // Secondary Blue (normalized)
+    
+    vec3 finalColor = mix(color1, color2 * 0.1, grid);
+    finalColor += color3 * (wave * wave2) * 0.05;
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_10 -->
+</div>
+<div class="absolute top-md left-md z-10">
+<div class="px-sm py-xs bg-primary/10 backdrop-blur-md rounded border border-primary/30 flex items-center gap-base">
+<div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+<span class="font-technical-data text-technical-data text-primary">LIVE_NODE: TOKYO_CENTRAL</span>
+</div>
+</div>
+<div class="absolute bottom-md right-md z-10 group-hover:translate-x-1 transition-transform cursor-pointer">
+<div class="flex items-center gap-base font-technical-data text-technical-data text-on-surface-variant bg-surface-container-highest/60 backdrop-blur-md px-md py-sm rounded">
+                            EXPAND_GRID <span class="material-symbols-outlined">north_east</span>
+</div>
+</div>
+</div>
+<!-- HQ Details Card -->
+<div class="glass-card p-lg rounded-xl border-l-4 border-primary">
+<h3 class="font-label-caps text-label-caps text-primary mb-md">HQ_COORDINATES</h3>
+<div class="space-y-md">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">location_on</span>
+<div>
+<p class="font-body-md text-on-surface">Shibuya Scramble, Level 42</p>
+<p class="font-body-sm text-on-surface-variant">Tokyo, 150-0002 JP</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">schedule</span>
+<div>
+<p class="font-body-md text-on-surface">Operational Cycles</p>
+<p class="font-body-sm text-on-surface-variant">Mon - Fri: 09:00 - 20:00 JST</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Direct Comms Bento -->
+<div class="grid grid-cols-2 gap-md">
+<div class="glass-card p-md rounded-xl hover:bg-primary/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-primary mb-sm group-hover:scale-110 transition-transform">mail</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-xs">CORE_MAIL</p>
+<p class="font-technical-data text-technical-data text-on-surface truncate">ops@vdiv.tech</p>
+</div>
+<div class="glass-card p-md rounded-xl hover:bg-primary/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-primary mb-sm group-hover:scale-110 transition-transform">call</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-xs">VOICE_LINK</p>
+<p class="font-technical-data text-technical-data text-on-surface">+81 (03) 5422-7711</p>
+</div>
+</div>
+</aside>
+</div>
+<!-- Global Presence Section (Subtle Divider Node) -->
+<div class="mt-xl relative">
+<div class="h-px bg-gradient-to-r from-transparent via-outline-variant/30 to-transparent w-full"></div>
+<div class="absolute left-1/2 -top-1 w-2 h-2 bg-primary rounded-full -translate-x-1/2 shadow-[0_0_10px_#cfbdff]"></div>
+</div>
+<section class="mt-xl grid grid-cols-1 md:grid-cols-3 gap-xl">
+<div class="text-center md:text-left">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-sm">EMEA Division</h4>
+<p class="font-body-md text-on-surface-variant mb-md">Berlin Innovation Hub<br/>Rosenthaler Str. 40, 10119</p>
+<a class="font-technical-data text-technical-data text-primary hover:underline" href="#">EU_CONTACT_MAP</a>
+</div>
+<div class="text-center md:text-left">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-sm">Americas Node</h4>
+<p class="font-body-md text-on-surface-variant mb-md">Silicon Alley Tech Base<br/>Flatiron, New York 10010</p>
+<a class="font-technical-data text-technical-data text-primary hover:underline" href="#">US_CONTACT_MAP</a>
+</div>
+<div class="text-center md:text-left">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-sm">APAC Hub</h4>
+<p class="font-body-md text-on-surface-variant mb-md">Singapore Green Tower<br/>Marina Bay, 018981</p>
+<a class="font-technical-data text-technical-data text-primary hover:underline" href="#">SG_CONTACT_MAP</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="relative w-full py-xl bg-surface-container-lowest border-t border-outline-variant/20 dark:border-primary/5">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="md:col-span-1">
+<div class="font-headline-md text-headline-md font-bold text-on-surface mb-md">VDiv</div>
+<p class="font-body-sm text-on-surface-variant">Engineered for absolute precision in high-load digital environments.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<p class="font-label-caps text-label-caps text-primary mb-base">LEGAL</p>
+<a class="font-body-sm text-on-surface-variant/60 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-on-surface-variant/60 hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-sm">
+<p class="font-label-caps text-label-caps text-primary mb-base">NETWORK</p>
+<a class="font-body-sm text-on-surface-variant/60 hover:text-primary transition-colors" href="#">Cookie Settings</a>
+<a class="font-body-sm text-on-surface-variant/60 hover:text-primary transition-colors" href="#">Global Offices</a>
+</div>
+<div class="flex flex-col gap-sm">
+<p class="font-label-caps text-label-caps text-primary mb-base">CONNECT</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">terminal</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">hub</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">database</span>
+</div>
+</div>
+</div>
+<div class="mt-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto text-center md:text-left border-t border-outline-variant/10 pt-md">
+<p class="font-body-sm text-on-surface-variant/60">© 2024 VDiv Technologies. Engineered for Precision.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions with GSAP
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('input, textarea, select');
+
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    const label = input.previousElementSibling;
+                    gsap.to(label, {
+                        color: '#cfbdff',
+                        duration: 0.3,
+                        x: 5
+                    });
+                    gsap.to(input, {
+                        backgroundColor: 'rgba(207, 188, 255, 0.03)',
+                        duration: 0.3
+                    });
+                });
+
+                input.addEventListener('blur', () => {
+                    const label = input.previousElementSibling;
+                    gsap.to(label, {
+                        color: '#cbc4d2',
+                        duration: 0.3,
+                        x: 0
+                    });
+                    gsap.to(input, {
+                        backgroundColor: 'transparent',
+                        duration: 0.3
+                    });
+                });
+            });
+
+            // Submit Button Interaction
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('button');
+                const originalText = btn.innerHTML;
+                
+                gsap.to(btn, {
+                    scale: 1.05,
+                    backgroundColor: '#e7c365', // Transition to tertiary color
+                    duration: 0.2,
+                    yoyo: true,
+                    repeat: 1
+                });
+
+                btn.innerHTML = 'UPLINK_SUCCESS';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 3000);
+            });
+
+            // Entry Animation for sections
+            gsap.from(".glass-card", {
+                opacity: 0,
+                y: 30,
+                stagger: 0.1,
+                duration: 1,
+                ease: "power3.out",
+                delay: 0.2
+            });
+        });
+    </script>
+</body></html>
