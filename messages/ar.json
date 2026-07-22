@@ -5,7 +5,9 @@
     "services": "الخدمات",
     "projects": "المشاريع",
     "contact": "اتصل بنا",
-    "initialize": "تهيئة النظام"
+    "initialize": "تهيئة النظام",
+    "portfolio": "معرض الأعمال",
+    "blog": "المدونة"
   },
   "Footer": {
     "rights": "© 2024 VDiv للتكنولوجيا. صُممت من أجل الدقة.",

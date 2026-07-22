@@ -5,7 +5,9 @@
     "services": "Services",
     "projects": "Projects",
     "contact": "Contact",
-    "initialize": "Initialize System"
+    "initialize": "Initialize System",
+    "portfolio": "Portfolio",
+    "blog": "Blog"
   },
   "Footer": {
     "rights": "© 2024 VDiv Technologies. Engineered for Precision.",
