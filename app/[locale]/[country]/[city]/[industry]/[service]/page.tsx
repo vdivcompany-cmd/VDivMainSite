@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/constants';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import seoData from '@/data/seoPages.json';
@@ -62,7 +63,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : data.metaDescription;
 
   // Build true hreflang pair
-  const baseUrl = 'https://vdiv.com';
+  const baseUrl = '${SITE_URL}';
   
   const languages: Record<string, string> = {};
   routing.locales.forEach(l => {
@@ -122,7 +123,7 @@ export default async function SEOLocationPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": data.schemaType || "ProfessionalService",
     "name": "vDiv",
-    "url": `https://vdiv.com/${locale}/${slug}`,
+    "url": `${SITE_URL}/${locale}/${slug}`,
     "description": primaryKeyword,
     "areaServed": {
       "@type": "AdministrativeArea",

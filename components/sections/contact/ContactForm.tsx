@@ -39,7 +39,7 @@ export function ContactForm() {
               </label>
               <input 
                 required
-                className="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 py-md px-0 focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300 focus:outline-none" 
+                className="w-full bg-surface-container-low rounded-t-md border-0 border-b border-outline-variant/30 py-md px-md focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300 focus:outline-none" 
                 placeholder="E.g. Alan Turing" 
                 type="text"
               />
@@ -54,7 +54,7 @@ export function ContactForm() {
               </label>
               <input 
                 required
-                className="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 py-md px-0 focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300 focus:outline-none" 
+                className="w-full bg-surface-container-low rounded-t-md border-0 border-b border-outline-variant/30 py-md px-md focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300 focus:outline-none" 
                 placeholder="name@domain.tech" 
                 type="email"
               />
@@ -68,7 +68,7 @@ export function ContactForm() {
             <label className="font-technical-data text-technical-data text-on-surface-variant block mb-base uppercase">
               {t('lbl_service')}
             </label>
-            <select className="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 py-md px-0 focus:ring-0 text-on-surface appearance-none focus:outline-none cursor-pointer">
+            <select className="w-full bg-surface-container-low rounded-t-md border-0 border-b border-outline-variant/30 py-md px-md focus:ring-0 text-on-surface appearance-none focus:outline-none cursor-pointer">
               <option>{t('opt_1')}</option>
               <option>{t('opt_2')}</option>
               <option>{t('opt_3')}</option>
@@ -85,7 +85,7 @@ export function ContactForm() {
             </label>
             <textarea 
               required
-              className="w-full bg-surface-container-low border-0 border-b border-outline-variant/30 py-md px-0 focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300 resize-none focus:outline-none" 
+              className="w-full bg-surface-container-low rounded-t-md border-0 border-b border-outline-variant/30 py-md px-md focus:ring-0 text-on-surface placeholder:text-outline transition-all duration-300 resize-none focus:outline-none" 
               placeholder="Describe the project scope or technical challenge..." 
               rows={4}
             ></textarea>
@@ -96,7 +96,7 @@ export function ContactForm() {
         <Reveal direction="up" delay={0.5}>
           <button 
             type="submit"
-            className="group relative px-xl py-md bg-primary text-on-primary font-technical-data text-technical-data font-bold rounded-lg overflow-hidden transition-transform duration-200 active:scale-95 flex items-center justify-center gap-sm mt-md"
+            className="group relative px-xl py-md bg-[#cfbdff] text-[#371e72] dark:bg-[#4f388a] dark:text-[#ffffff] font-technical-data text-technical-data font-bold rounded-lg overflow-hidden transition-transform duration-200 active:scale-95 flex items-center justify-center gap-sm mt-md"
           >
             {t('btn_submit')}
             <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />

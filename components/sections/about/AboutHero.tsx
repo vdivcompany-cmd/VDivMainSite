@@ -25,7 +25,7 @@ export function AboutHero() {
         <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-tertiary/5 rounded-full blur-[150px] pointer-events-none"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop relative z-10 grid lg:grid-cols-[1.1fr_1fr] gap-xl lg:gap-[80px] items-center py-xl">
+      <div className=" w-full mx-auto px-margin-mobile md:px-margin-desktop relative z-10 grid lg:grid-cols-[1.1fr_1fr] gap-xl lg:gap-[80px] items-center py-xl">
         <div className="flex flex-col justify-center">
           <Reveal direction="up" delay={0}>
             <div className="flex items-center gap-sm mb-lg">

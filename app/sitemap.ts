@@ -1,8 +1,9 @@
+import { SITE_URL } from '@/lib/constants';
 import { MetadataRoute } from 'next';
 import seoData from '@/data/seoPages.json';
 import { routing } from '@/i18n/routing';
 
-const baseUrl = 'https://vdiv.com';
+const baseUrl = SITE_URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Static core routes

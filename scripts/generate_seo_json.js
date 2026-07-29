@@ -111,7 +111,7 @@ for (const [country, c_data] of Object.entries(locations)) {
                 const metaDescription = `تعاقد مع أفضل شركة تقدم خدمات ${srv_ar} لقطاع ${ind_ar} في ${city_ar}. حلول تقنية مخصصة للشركات الكبرى لزيادة الكفاءة التشغيلية.`;
                 const suggestedH1 = `حلول ${srv_ar} المتقدمة لقطاع ${ind_ar} في ${city_ar}`;
                 const suggestedURLSlug = `${country_slug}/${city_slug}/${ind_slug}/${srv_slug}`;
-                const canonicalURL = `https://vdiv.com/${suggestedURLSlug}`;
+                const canonicalURL = `https://vdiv.cc.cd/${suggestedURLSlug}`;
                 const breadcrumb = `الرئيسية > ${country} > ${city_ar} > ${ind_ar} > ${srv_en}`;
                 const internalLinkCategory = srv_slug;
                 const pageCluster = `${country_slug}-${city_slug}-${ind_slug}`;

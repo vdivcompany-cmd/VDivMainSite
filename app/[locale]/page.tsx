@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/constants';
 import { CoreCapabilities } from "@/components/sections/home/CoreCapabilities";
 import { WhyTrimax } from "@/components/sections/home/WhyTrimax";
 import { FeaturedProjects } from "@/components/sections/home/FeaturedProjects";
@@ -13,16 +14,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('Home.title'),
     description: t('Home.description'),
     alternates: {
-      canonical: `https://vdiv.com/${locale}`,
+      canonical: `${SITE_URL}/${locale}`,
       languages: {
-        'en': `https://vdiv.com/en`,
-        'ar': `https://vdiv.com/ar`,
+        'en': `${SITE_URL}/en`,
+        'ar': `${SITE_URL}/ar`,
       },
     },
     openGraph: {
       title: t('Home.title'),
       description: t('Home.description'),
-      url: `https://vdiv.com/${locale}`,
+      url: `${SITE_URL}/${locale}`,
     }
   };
 }

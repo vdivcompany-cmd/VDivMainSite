@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/constants';
 import { AboutRedesignHero } from "@/components/sections/about/AboutRedesignHero";
 import { AboutMission } from "@/components/sections/about/AboutMission";
 import { AboutStatsRedux } from "@/components/sections/about/AboutStatsRedux";
@@ -15,16 +16,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('About.title'),
     description: t('About.description'),
     alternates: {
-      canonical: `https://vdiv.com/${locale}/about`,
+      canonical: `${SITE_URL}/${locale}/about`,
       languages: {
-        'en': `https://vdiv.com/en/about`,
-        'ar': `https://vdiv.com/ar/about`,
+        'en': `${SITE_URL}/en/about`,
+        'ar': `${SITE_URL}/ar/about`,
       },
     },
     openGraph: {
       title: t('About.title'),
       description: t('About.description'),
-      url: `https://vdiv.com/${locale}/about`,
+      url: `${SITE_URL}/${locale}/about`,
     }
   };
 }

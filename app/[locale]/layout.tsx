@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/constants';
 import '@/app/globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   
   return {
-    metadataBase: new URL('https://vdiv.com'),
+    metadataBase: new URL(SITE_URL),
     title: {
       template: '%s | vDiv',
       default: 'vDiv',
@@ -31,6 +32,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       siteName: 'vDiv',
       type: 'website',
       locale: locale === 'ar' ? 'ar_SA' : 'en_US',
+      url: SITE_URL,
+      title: 'vDiv - Elite Software & AI Automation',
+      description: 'V DIV combines elite software engineering, autonomous AI workflows, and precision data-driven growth architecture.',
+      images: [
+        {
+          url: `${SITE_URL}/Logo-home.png`,
+          width: 1200,
+          height: 630,
+          alt: 'V DIV - Elite Software & AI Automation',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',

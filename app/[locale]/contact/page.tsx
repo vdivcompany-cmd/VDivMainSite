@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/constants';
 import { ContactBackground } from "@/components/sections/contact/ContactBackground";
 import { ContactHeader } from "@/components/sections/contact/ContactHeader";
 import { ContactForm } from "@/components/sections/contact/ContactForm";
@@ -13,16 +14,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('Contact.title'),
     description: t('Contact.description'),
     alternates: {
-      canonical: `https://vdiv.com/${locale}/contact`,
+      canonical: `${SITE_URL}/${locale}/contact`,
       languages: {
-        'en': `https://vdiv.com/en/contact`,
-        'ar': `https://vdiv.com/ar/contact`,
+        'en': `${SITE_URL}/en/contact`,
+        'ar': `${SITE_URL}/ar/contact`,
       },
     },
     openGraph: {
       title: t('Contact.title'),
       description: t('Contact.description'),
-      url: `https://vdiv.com/${locale}/contact`,
+      url: `${SITE_URL}/${locale}/contact`,
     }
   };
 }

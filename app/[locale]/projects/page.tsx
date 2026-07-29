@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/constants';
 import { ProjectsBackground } from "@/components/sections/projects/ProjectsBackground";
 import { ProjectShowcase } from "@/components/sections/projects/ProjectShowcase";
 import { ProjectsCTA } from "@/components/sections/projects/ProjectsCTA";
@@ -12,16 +13,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('Projects.title'),
     description: t('Projects.description'),
     alternates: {
-      canonical: `https://vdiv.com/${locale}/projects`,
+      canonical: `${SITE_URL}/${locale}/projects`,
       languages: {
-        'en': `https://vdiv.com/en/projects`,
-        'ar': `https://vdiv.com/ar/projects`,
+        'en': `${SITE_URL}/en/projects`,
+        'ar': `${SITE_URL}/ar/projects`,
       },
     },
     openGraph: {
       title: t('Projects.title'),
       description: t('Projects.description'),
-      url: `https://vdiv.com/${locale}/projects`,
+      url: `${SITE_URL}/${locale}/projects`,
     }
   };
 }

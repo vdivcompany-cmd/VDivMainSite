@@ -121,7 +121,7 @@ for country, c_data in locations.items():
                 metaDescription = f"تعاقد مع أفضل شركة تقدم خدمات {srv_ar} لقطاع {ind_ar} في {city_ar}. حلول تقنية مخصصة للشركات الكبرى لزيادة الكفاءة التشغيلية."
                 suggestedH1 = f"حلول {srv_ar} المتقدمة لقطاع {ind_ar} في {city_ar}"
                 suggestedURLSlug = f"{country_slug}/{city_slug}/{ind_slug}/{srv_slug}"
-                canonicalURL = f"https://vdiv.com/{suggestedURLSlug}"
+                canonicalURL = f"https://vdiv.cc.cd/{suggestedURLSlug}"
                 breadcrumb = f"الرئيسية > {country} > {city_ar} > {ind_ar} > {srv_en}"
                 internalLinkCategory = srv_slug
                 pageCluster = f"{country_slug}-{city_slug}-{ind_slug}"
