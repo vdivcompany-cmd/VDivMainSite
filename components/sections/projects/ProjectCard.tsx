@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ArrowRight, Activity } from "lucide-react";
 import type { Project } from "@/data/projectsData";
@@ -36,11 +37,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
         
         {/* Image Container */}
         <div className="relative h-64 w-full bg-surface-container mb-lg rounded-sm overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
+          <Image 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
             src={project.image}
             alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className={`absolute top-4 right-4 ${colorBgOverlay} backdrop-blur-md px-sm py-xs border ${colorBorderOverlay} rounded z-20`}>
             <span className={`font-technical-data text-technical-data ${colorText}`}>

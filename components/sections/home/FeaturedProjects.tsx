@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import { useTranslations } from "next-intl";
 
@@ -22,11 +23,13 @@ export function FeaturedProjects() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-lg">
           {/* Project 1 */}
           <Reveal direction="up" className="group relative overflow-hidden rounded-xl border border-outline-variant/20">
-            <div className="aspect-[16/9] overflow-hidden">
-              <img 
+            <div className="aspect-[16/9] overflow-hidden relative">
+              <Image 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                 alt="Offshore Node" 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGzv6D115ocp1g8DMHhbstUUEWsRp6UR7jrUay6DPo0Q8wV_56w01eCfBbZjOYPVRbC1W6Cp8uqVKF_ryHpiKIXmU7PPoDR6Z27ZyG5xjXPi9b1YWhs0bFMdZtdw-aKMibBrxUc6P0UfzZf8wODIB6W9gkU_r3b3rmudQQ_tWq0x8U8ALlp3S2tqBoNoNyfZ6mQ2qKaQitP7AJSHTPVQcxZDSymL3dCZ6G-2ZGFIPcTlXZM7tygrfDiw"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/20 to-transparent p-xl flex flex-col justify-end">
@@ -42,11 +45,13 @@ export function FeaturedProjects() {
 
           {/* Project 2 */}
           <Reveal direction="up" delay={0.2} className="group relative overflow-hidden rounded-xl border border-outline-variant/20">
-            <div className="aspect-[16/9] overflow-hidden">
-              <img 
+            <div className="aspect-[16/9] overflow-hidden relative">
+              <Image 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                 alt="Aerospace" 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Xvml8SRymplFVlN4tkizCtVVN_hDlInKP2uHobs3dROWRXdXZoZPldvYLP5R4CxynPhaEaLsXZuDLoNKRm37QwNtArn878LrN3Dz5UUzo4LJeoRlPrUUswm0LCgl-XQNf2Q9YNKo_BqOlZg1uPudZQZsN7qatqABJ9NuvQ1EpPYndVo0PtWMH1gQnWGlYUUGZ2EqvdsvoWyBgzcdYgWgNqySoPDm3zTUeP3-fiY-4lQDbeDZboGvuw"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/20 to-transparent p-xl flex flex-col justify-end">

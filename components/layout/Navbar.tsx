@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import Image from "next/image";
 import { Link, useRouter, usePathname } from "@/i18n/routing";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
@@ -81,10 +82,13 @@ export function Navbar() {
         <div className="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-full max-w-full">
 
           <Link href="/" className="flex items-center gap-2 relative z-[101]">
-            <img
+            <Image
               alt="VDiv Logo"
               className="h-8 md:h-10 w-auto object-contain"
               src="/LOGO-Nav-footer.png"
+              width={160}
+              height={40}
+              priority
             />
           </Link>
 

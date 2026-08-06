@@ -1,9 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Satellite, MapPin, Mail } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
-import { ContactNode3D } from "./ContactNode3D";
+
+const ContactNode3D = dynamic(
+  () => import("./ContactNode3D").then((mod) => mod.ContactNode3D),
+  {
+    ssr: false,
+    loading: () => <div className="w-full h-full" />,
+  }
+);
 
 export function ContactSidebar() {
   const t = useTranslations("ContactUs");

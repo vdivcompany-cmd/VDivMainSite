@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import { useTranslations } from "next-intl";
 
@@ -10,11 +11,13 @@ export function WhyTrimax() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
         <div className="lg:col-span-7 relative">
           <Reveal direction="left">
-            <div className="aspect-video bg-surface-container rounded-xl overflow-hidden border border-outline-variant/30 group">
-              <img 
+            <div className="aspect-video bg-surface-container rounded-xl overflow-hidden border border-outline-variant/30 group relative">
+              <Image 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
                 alt="Laboratory clean room" 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeYrSz6V8O71B5wSXvc2DlY7X_NnjOi4IWDk77LRtbSFVkAjXwPMI05y4jFboL2RnCxWYU1pu9AzBq7OXTpVa3JxCjYqRURv2DNMoZv6Ixm938FdAO0VYJPZgK_5asO8u4uOOfP31HfLoBxfU9weQbNhtknl6VBIvmZnUZFnex-NDeRmp-wKjaVWAq6HI30QwLPEkN9fWuj44J_jz2m83ndQ6AMVcQfKoUl2St_iB_Jlfh1uJISIZRSw"
+                fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
             </div>

@@ -1,10 +1,14 @@
 import { SITE_URL } from '@/lib/constants';
-import { ContactBackground } from "@/components/sections/contact/ContactBackground";
+import dynamic from 'next/dynamic';
 import { ContactHeader } from "@/components/sections/contact/ContactHeader";
 import { ContactForm } from "@/components/sections/contact/ContactForm";
 import { ContactSidebar } from "@/components/sections/contact/ContactSidebar";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+
+const ContactBackground = dynamic(
+  () => import('@/components/sections/contact/ContactBackground').then((mod) => mod.ContactBackground)
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

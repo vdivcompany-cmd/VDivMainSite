@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Code2, Shield, Network } from "lucide-react";
 
@@ -13,10 +14,12 @@ export function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-lg px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
         <div className="flex flex-col gap-md items-start">
           <Link href="/">
-            <img
+            <Image
               alt="VDiv Logo"
               className="h-10 md:h-12 w-auto object-contain object-left"
               src="/LOGO-Nav-footer.png"
+              width={180}
+              height={48}
             />
           </Link>
           <p className="font-body-sm text-body-sm ">

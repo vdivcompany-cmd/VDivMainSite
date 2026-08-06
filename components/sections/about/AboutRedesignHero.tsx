@@ -1,10 +1,16 @@
 "use client";
 
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useTranslations, useLocale } from "next-intl";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRight } from "lucide-react";
 import Marquee from "react-fast-marquee";
-import LightRays from "@/components/ui/LightRays";
+
+const LightRays = dynamic(() => import("@/components/ui/LightRays"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />,
+});
 
 export function AboutRedesignHero() {
   const t = useTranslations("AboutRedesign");
@@ -72,11 +78,14 @@ export function AboutRedesignHero() {
           <Reveal direction="left" delay={0.2} className="w-full flex justify-center relative">
             <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full"></div>
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               alt="VDiv Logo"
-              className="relative z-10 w-full drop-shadow-[0_0_50px_rgba(207,188,255,0.2)] transform-gpu will-change-transform"
+              className="relative z-10 w-full h-auto drop-shadow-[0_0_50px_rgba(207,188,255,0.2)] transform-gpu will-change-transform"
               src="/Logo-about.png"
+              width={600}
+              height={600}
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </Reveal>
         </div>

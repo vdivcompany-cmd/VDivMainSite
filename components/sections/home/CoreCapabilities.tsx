@@ -1,9 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Reveal } from "@/components/ui/Reveal";
-import Threads from "@/components/ui/Threads";
 import { Network, Shield, Database, Cpu, Wind, Cable, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+const Threads = dynamic(() => import("@/components/ui/Threads"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />,
+});
 
 export function CoreCapabilities() {
   const t = useTranslations("CoreCapabilities");

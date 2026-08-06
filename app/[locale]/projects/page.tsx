@@ -1,9 +1,13 @@
 import { SITE_URL } from '@/lib/constants';
-import { ProjectsBackground } from "@/components/sections/projects/ProjectsBackground";
+import dynamic from 'next/dynamic';
 import { ProjectShowcase } from "@/components/sections/projects/ProjectShowcase";
 import { ProjectsCTA } from "@/components/sections/projects/ProjectsCTA";
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+
+const ProjectsBackground = dynamic(
+  () => import("@/components/sections/projects/ProjectsBackground").then((mod) => mod.ProjectsBackground)
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

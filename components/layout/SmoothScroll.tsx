@@ -5,6 +5,7 @@ import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { usePathname } from '@/i18n/routing';
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -12,8 +13,14 @@ if (typeof window !== "undefined") {
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
+
+  // Exclude deep programmatic SEO pages from Lenis overhead
+  const isProgrammaticPage = pathname ? pathname.split('/').filter(Boolean).length >= 3 : false;
 
   useEffect(() => {
+    if (isProgrammaticPage) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
@@ -41,8 +48,9 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       // Clean up GSAP ticker and Lenis
       gsap.ticker.remove(raf);
       lenis.destroy();
+      lenisRef.current = null;
     };
-  }, []);
+  }, [isProgrammaticPage, pathname]);
 
   return <>{children}</>;
 }

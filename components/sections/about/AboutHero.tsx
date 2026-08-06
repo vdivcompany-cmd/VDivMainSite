@@ -1,8 +1,14 @@
 "use client";
 
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Reveal } from "@/components/ui/Reveal";
-import DotGrid from "@/components/ui/DotGrid";
 import { useTranslations } from "next-intl";
+
+const DotGrid = dynamic(() => import("@/components/ui/DotGrid"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />,
+});
 
 export function AboutHero() {
   const t = useTranslations("AboutHero");
@@ -63,10 +69,13 @@ export function AboutHero() {
 
         <Reveal direction="left" delay={0.4} className="relative mt-12 lg:mt-0">
           <div className="aspect-[4/5] lg:aspect-square relative rounded-2xl overflow-hidden border border-primary/20 shadow-2xl group">
-            <img
+            <Image
               className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out transform-gpu will-change-transform"
               alt="A macro photography shot of a high-end titanium mechanical component..."
-              src="Logo-home.png"
+              src="/Logo-home.png"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-background/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700"></div>
 
