@@ -123,7 +123,7 @@ void main() {
 
 const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseInteraction = false, ...rest }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationFrameId = useRef(0);
+  const animationFrameId = useRef<number | null>(null);
 
   const propsRef = useRef({ color, amplitude, distance, enableMouseInteraction });
   propsRef.current = { color, amplitude, distance, enableMouseInteraction };
@@ -132,40 +132,60 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({ alpha: true });
-    const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 0);
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-    container.appendChild(gl.canvas);
+    let renderer: Renderer | null = null;
+    let gl: any = null;
+    let program: Program | null = null;
+    let mesh: Mesh | null = null;
+    let isVisible = false;
+    let isInitialized = false;
 
-    const geometry = new Triangle(gl);
-    const program = new Program(gl, {
-      vertex: vertexShader,
-      fragment: fragmentShader,
-      uniforms: {
-        iTime: { value: 0 },
-        iResolution: {
-          value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
-        },
-        uColor: { value: new Color(...propsRef.current.color) },
-        uAmplitude: { value: propsRef.current.amplitude },
-        uDistance: { value: propsRef.current.distance },
-        uMouse: { value: new Float32Array([0.5, 0.5]) }
-      }
-    });
+    const currentMouse = [0.5, 0.5];
+    let targetMouse = [0.5, 0.5];
+    let cachedRect: DOMRect | null = null;
 
-    const mesh = new Mesh(gl, { geometry, program });
+    function initGL() {
+      if (isInitialized || !container) return;
+      isInitialized = true;
+
+      renderer = new Renderer({ alpha: true });
+      gl = renderer.gl;
+      gl.clearColor(0, 0, 0, 0);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+      container.appendChild(gl.canvas);
+
+      const geometry = new Triangle(gl);
+      program = new Program(gl, {
+        vertex: vertexShader,
+        fragment: fragmentShader,
+        uniforms: {
+          iTime: { value: 0 },
+          iResolution: {
+            value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
+          },
+          uColor: { value: new Color(...propsRef.current.color) },
+          uAmplitude: { value: propsRef.current.amplitude },
+          uDistance: { value: propsRef.current.distance },
+          uMouse: { value: new Float32Array([0.5, 0.5]) }
+        }
+      });
+
+      mesh = new Mesh(gl, { geometry, program });
+      resize();
+    }
 
     const MAX_RENDER_DIM = 1920;
     function resize() {
-      if (!container) return;
+      if (!container || !renderer || !program || !gl) return;
       const { clientWidth, clientHeight } = container;
-      const baseDpr = Math.min(window.devicePixelRatio || 1, 2);
+      if (clientWidth === 0 || clientHeight === 0) return;
+
+      const baseDpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const longestSide = Math.max(clientWidth, clientHeight) * baseDpr;
       const dpr = longestSide > MAX_RENDER_DIM ? (baseDpr * MAX_RENDER_DIM) / longestSide : baseDpr;
       renderer.dpr = dpr;
       renderer.setSize(clientWidth, clientHeight);
+      cachedRect = container.getBoundingClientRect();
       program.uniforms.iResolution.value.r = gl.canvas.width;
       program.uniforms.iResolution.value.g = gl.canvas.height;
       program.uniforms.iResolution.value.b = gl.canvas.width / gl.canvas.height;
@@ -174,68 +194,91 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
     window.addEventListener('resize', resize);
-    resize();
-
-    const currentMouse = [0.5, 0.5];
-    let targetMouse = [0.5, 0.5];
 
     function handleMouseMove(e: MouseEvent) {
       if (!container) return;
-      const rect = container.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = 1.0 - (e.clientY - rect.top) / rect.height;
+      if (!cachedRect) cachedRect = container.getBoundingClientRect();
+      const x = (e.clientX - cachedRect.left) / cachedRect.width;
+      const y = 1.0 - (e.clientY - cachedRect.top) / cachedRect.height;
       targetMouse = [x, y];
     }
     function handleMouseLeave() {
       targetMouse = [0.5, 0.5];
     }
-    container.addEventListener('mousemove', handleMouseMove);
+    container.addEventListener('mousemove', handleMouseMove, { passive: true });
     container.addEventListener('mouseleave', handleMouseLeave);
 
-    let isVisible = true;
+    function startLoop() {
+      if (animationFrameId.current !== null) return;
+      function update(t: number) {
+        if (!isVisible || document.hidden) {
+          animationFrameId.current = null;
+          return;
+        }
+
+        if (renderer && program && mesh) {
+          const { color, amplitude, distance, enableMouseInteraction } = propsRef.current;
+
+          program.uniforms.uColor.value.set(...color);
+          program.uniforms.uAmplitude.value = amplitude;
+          program.uniforms.uDistance.value = distance;
+
+          if (enableMouseInteraction) {
+            const smoothing = 0.05;
+            currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
+            currentMouse[1] += smoothing * (targetMouse[1] - currentMouse[1]);
+            program.uniforms.uMouse.value[0] = currentMouse[0];
+            program.uniforms.uMouse.value[1] = currentMouse[1];
+          } else {
+            program.uniforms.uMouse.value[0] = 0.5;
+            program.uniforms.uMouse.value[1] = 0.5;
+          }
+          program.uniforms.iTime.value = t * 0.001;
+
+          renderer.render({ scene: mesh });
+        }
+
+        animationFrameId.current = requestAnimationFrame(update);
+      }
+      animationFrameId.current = requestAnimationFrame(update);
+    }
+
+    function stopLoop() {
+      if (animationFrameId.current !== null) {
+        cancelAnimationFrame(animationFrameId.current);
+        animationFrameId.current = null;
+      }
+    }
+
     const intersectionObserver = new IntersectionObserver(
       entries => {
-        isVisible = entries[0].isIntersecting;
+        const entry = entries[0];
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          if (!isInitialized) initGL();
+          cachedRect = container.getBoundingClientRect();
+          startLoop();
+        } else {
+          stopLoop();
+        }
       },
-      { threshold: 0 }
+      { threshold: 0.05 }
     );
     intersectionObserver.observe(container);
 
-    function update(t: number) {
-      animationFrameId.current = requestAnimationFrame(update);
-      if (!isVisible || document.hidden) return;
-
-      const { color, amplitude, distance, enableMouseInteraction } = propsRef.current;
-
-      program.uniforms.uColor.value.set(...color);
-      program.uniforms.uAmplitude.value = amplitude;
-      program.uniforms.uDistance.value = distance;
-
-      if (enableMouseInteraction) {
-        const smoothing = 0.05;
-        currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
-        currentMouse[1] += smoothing * (targetMouse[1] - currentMouse[1]);
-        program.uniforms.uMouse.value[0] = currentMouse[0];
-        program.uniforms.uMouse.value[1] = currentMouse[1];
-      } else {
-        program.uniforms.uMouse.value[0] = 0.5;
-        program.uniforms.uMouse.value[1] = 0.5;
-      }
-      program.uniforms.iTime.value = t * 0.001;
-
-      renderer.render({ scene: mesh });
-    }
-    animationFrameId.current = requestAnimationFrame(update);
-
     return () => {
-      if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current);
+      stopLoop();
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       window.removeEventListener('resize', resize);
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
-      if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      if (gl && gl.canvas && container.contains(gl.canvas)) {
+        container.removeChild(gl.canvas);
+      }
+      if (gl) {
+        gl.getExtension('WEBGL_lose_context')?.loseContext();
+      }
     };
   }, []);
 

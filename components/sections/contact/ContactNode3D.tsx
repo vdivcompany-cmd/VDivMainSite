@@ -9,6 +9,10 @@ export function ContactNode3D() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    let cachedRect: DOMRect | null = null;
+    let isVisible = false;
+    let animationFrameId: number | null = null;
+
     // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
     function syncSize() {
       if (!canvas) return;
@@ -18,6 +22,7 @@ export function ContactNode3D() {
         canvas.width = w;
         canvas.height = h;
       }
+      cachedRect = canvas.getBoundingClientRect();
     }
 
     const resizeObserver = new ResizeObserver(syncSize);
@@ -104,22 +109,22 @@ void main() {
     const mouse = { x: canvas.width / 2, y: canvas.height / 2 };
 
     const onMouseMove = (event: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      if (rect.width && rect.height) {
-        // Map mouse position correctly for WebGL
-        const nx = (event.clientX - rect.left) / rect.width;
-        const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
+      if (cachedRect.width && cachedRect.height) {
+        const nx = (event.clientX - cachedRect.left) / cachedRect.width;
+        const ny = 1.0 - (event.clientY - cachedRect.top) / cachedRect.height;
         mouse.x = nx * canvas.width;
         mouse.y = ny * canvas.height;
       }
     };
 
-    window.addEventListener('mousemove', onMouseMove);
-
-    let animationFrameId: number;
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
 
     function render(t: number) {
-      if (!gl || !canvas) return;
+      if (!gl || !canvas || !isVisible || document.hidden) {
+        animationFrameId = null;
+        return;
+      }
       
       gl.viewport(0, 0, canvas.width, canvas.height);
       
@@ -131,11 +136,36 @@ void main() {
       animationFrameId = requestAnimationFrame(render);
     }
 
-    animationFrameId = requestAnimationFrame(render);
+    function startLoop() {
+      if (animationFrameId !== null) return;
+      animationFrameId = requestAnimationFrame(render);
+    }
+
+    function stopLoop() {
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    }
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          cachedRect = canvas.getBoundingClientRect();
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    intersectionObserver.observe(canvas);
 
     return () => {
+      stopLoop();
+      intersectionObserver.disconnect();
       window.removeEventListener('mousemove', onMouseMove);
-      cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
       
       if (gl) {
@@ -148,11 +178,20 @@ void main() {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 bg-surface-container-low">
+    <div className="relative w-full h-full min-h-[400px] rounded-2xl overflow-hidden glassmorphism flex items-center justify-center p-4">
       <canvas 
         ref={canvasRef} 
-        className="w-full h-full block cursor-crosshair opacity-80"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-auto"
       />
+      <div className="relative z-10 text-center pointer-events-none p-6 bg-surface-dark/80 backdrop-blur-md rounded-xl border border-surface-border">
+        <div className="w-12 h-12 rounded-full border border-primary/50 flex items-center justify-center mx-auto mb-4 text-primary animate-pulse">
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h4 className="text-xl font-bold font-heading text-white mb-2">Trimax Secure Gateway</h4>
+        <p className="text-sm text-text-muted">Interactive telemetry matrix node active.</p>
+      </div>
     </div>
   );
 }
