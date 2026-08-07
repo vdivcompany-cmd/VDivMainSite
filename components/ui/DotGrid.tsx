@@ -1,7 +1,15 @@
 'use client';
 import { useRef, useEffect, useCallback, useMemo } from 'react';
-import { gsap } from 'gsap';
 import './DotGrid.css';
+
+let cachedGsap: any = null;
+const loadGsap = async () => {
+  if (!cachedGsap) {
+    const mod = await import('gsap');
+    cachedGsap = mod.default || mod.gsap || mod;
+  }
+  return cachedGsap;
+};
 
 const throttle = (func: any, limit: number) => {
   let lastCall = 0;
@@ -338,29 +346,31 @@ const DotGrid = ({
         const dist = Math.hypot(dot.cx - pr.x, dot.cy - pr.y);
         if (speed > speedTrigger && dist < proximity && !dot._inertiaApplied) {
           dot._inertiaApplied = true;
-          gsap.killTweensOf(dot);
-          const pushX = dot.cx - pr.x + vx * 0.005;
-          const pushY = dot.cy - pr.y + vy * 0.005;
-          
-          activeTweensRef.current++;
-          gsap.to(dot, {
-            xOffset: pushX, 
-            yOffset: pushY,
-            duration: 0.3,
-            ease: "power2.out",
-            onComplete: () => {
-              gsap.to(dot, {
-                xOffset: 0,
-                yOffset: 0,
-                duration: returnDuration,
-                ease: 'elastic.out(1,0.75)',
-                onComplete: () => {
-                  dot._inertiaApplied = false;
-                  activeTweensRef.current = Math.max(0, activeTweensRef.current - 1);
-                  requestRender();
-                }
-              });
-            }
+          loadGsap().then((gsap) => {
+            gsap.killTweensOf(dot);
+            const pushX = dot.cx - pr.x + vx * 0.005;
+            const pushY = dot.cy - pr.y + vy * 0.005;
+            
+            activeTweensRef.current++;
+            gsap.to(dot, {
+              xOffset: pushX, 
+              yOffset: pushY,
+              duration: 0.3,
+              ease: "power2.out",
+              onComplete: () => {
+                gsap.to(dot, {
+                  xOffset: 0,
+                  yOffset: 0,
+                  duration: returnDuration,
+                  ease: 'elastic.out(1,0.75)',
+                  onComplete: () => {
+                    dot._inertiaApplied = false;
+                    activeTweensRef.current = Math.max(0, activeTweensRef.current - 1);
+                    requestRender();
+                  }
+                });
+              }
+            });
           });
         }
       }
@@ -393,30 +403,32 @@ const DotGrid = ({
         const dist = Math.hypot(dot.cx - cx, dot.cy - cy);
         if (dist < shockRadius && !dot._inertiaApplied) {
           dot._inertiaApplied = true;
-          gsap.killTweensOf(dot);
-          const falloff = Math.max(0, 1 - dist / shockRadius);
-          const pushX = (dot.cx - cx) * shockStrength * falloff;
-          const pushY = (dot.cy - cy) * shockStrength * falloff;
-          
-          activeTweensRef.current++;
-          gsap.to(dot, {
-            xOffset: pushX, 
-            yOffset: pushY,
-            duration: 0.2,
-            ease: "power2.out",
-            onComplete: () => {
-              gsap.to(dot, {
-                xOffset: 0,
-                yOffset: 0,
-                duration: returnDuration,
-                ease: 'elastic.out(1,0.75)',
-                onComplete: () => {
-                  dot._inertiaApplied = false;
-                  activeTweensRef.current = Math.max(0, activeTweensRef.current - 1);
-                  requestRender();
-                }
-              });
-            }
+          loadGsap().then((gsap) => {
+            gsap.killTweensOf(dot);
+            const falloff = Math.max(0, 1 - dist / shockRadius);
+            const pushX = (dot.cx - cx) * shockStrength * falloff;
+            const pushY = (dot.cy - cy) * shockStrength * falloff;
+            
+            activeTweensRef.current++;
+            gsap.to(dot, {
+              xOffset: pushX, 
+              yOffset: pushY,
+              duration: 0.2,
+              ease: "power2.out",
+              onComplete: () => {
+                gsap.to(dot, {
+                  xOffset: 0,
+                  yOffset: 0,
+                  duration: returnDuration,
+                  ease: 'elastic.out(1,0.75)',
+                  onComplete: () => {
+                    dot._inertiaApplied = false;
+                    activeTweensRef.current = Math.max(0, activeTweensRef.current - 1);
+                    requestRender();
+                  }
+                });
+              }
+            });
           });
         }
       }

@@ -1,13 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { useEffect, useRef, useState } from "react";
 
 interface RevealProps {
   children: React.ReactNode;
@@ -25,43 +18,53 @@ export function Reveal({
   duration = 1
 }: RevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  useGSAP(() => {
-    if (!containerRef.current) return;
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
 
-    let x = 0;
-    let y = 0;
-
-    switch (direction) {
-      case "up": y = 50; break;
-      case "down": y = -50; break;
-      case "left": x = -50; break;
-      case "right": x = 50; break;
+    // Check if element is already in viewport on mount (e.g. above fold hero)
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+      setIsVisible(true);
+      return;
     }
 
-    gsap.fromTo(
-      containerRef.current,
-      { opacity: 0, x, y },
-      {
-        opacity: 1,
-        x: 0,
-        y: 0,
-        duration,
-        delay,
-        ease: "power3.out",
-        force3D: true,
-        clearProps: "transform",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 85%",
-          toggleActions: "play none none none"
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
         }
-      }
+      },
+      { rootMargin: "0px 0px -15% 0px", threshold: 0 }
     );
-  }, { scope: containerRef });
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
+  let initialTransform = "translate3d(0, 50px, 0)";
+  switch (direction) {
+    case "up": initialTransform = "translate3d(0, 50px, 0)"; break;
+    case "down": initialTransform = "translate3d(0, -50px, 0)"; break;
+    case "left": initialTransform = "translate3d(-50px, 0, 0)"; break;
+    case "right": initialTransform = "translate3d(50px, 0, 0)"; break;
+  }
 
   return (
-    <div ref={containerRef} className={`opacity-0 ${className}`}>
+    <div 
+      ref={containerRef} 
+      className={`transform-gpu ${className}`}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translate3d(0, 0, 0)" : initialTransform,
+        transition: `opacity ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
+        willChange: isVisible ? "auto" : "opacity, transform"
+      }}
+    >
       {children}
     </div>
   );

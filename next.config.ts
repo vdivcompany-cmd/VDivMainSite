@@ -24,4 +24,16 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+let config = withNextIntl(nextConfig);
+
+if (process.env.ANALYZE === 'true') {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const withBundleAnalyzer = require('@next/bundle-analyzer')({ enabled: true });
+    config = withBundleAnalyzer(config);
+  } catch {
+    // bundle analyzer not available
+  }
+}
+
+export default config;

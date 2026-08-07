@@ -1,13 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { Link, useRouter, usePathname } from "@/i18n/routing";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 
 export function Navbar() {
   const t = useTranslations("Navbar");
@@ -17,8 +15,6 @@ export function Navbar() {
   const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const backdropRef = useRef<HTMLDivElement>(null);
 
   const toggleLanguage = () => {
     const nextLocale = locale === 'en' ? 'ar' : 'en';
@@ -45,29 +41,6 @@ export function Navbar() {
       window.removeEventListener("keydown", handleEsc);
     };
   }, [isOpen]);
-
-  // GSAP Animation
-  useGSAP(() => {
-    const isRtl = document.dir === 'rtl' || locale === 'ar';
-    const xOffset = isRtl ? "-100%" : "100%";
-
-    if (isOpen) {
-      gsap.to(backdropRef.current, { opacity: 1, duration: 0.3, display: "block" });
-      gsap.fromTo(
-        menuRef.current,
-        { x: xOffset },
-        { x: "0%", duration: 0.5, ease: "power3.out" }
-      );
-      gsap.fromTo(
-        ".mobile-nav-link",
-        { opacity: 0, x: isRtl ? -20 : 20 },
-        { opacity: 1, x: 0, duration: 0.4, stagger: 0.05, delay: 0.2, ease: "power2.out" }
-      );
-    } else {
-      gsap.to(backdropRef.current, { opacity: 0, duration: 0.3, display: "none" });
-      gsap.to(menuRef.current, { x: xOffset, duration: 0.4, ease: "power3.in" });
-    }
-  }, { dependencies: [isOpen, locale] });
 
   const navLinks = [
     { name: t('home'), path: '/' },
@@ -144,9 +117,7 @@ export function Navbar() {
 
       {/* Backdrop */}
       <div 
-        ref={backdropRef}
-        className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm md:hidden"
-        style={{ display: 'none', opacity: 0 }}
+        className={`fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         onClick={closeMenu}
         aria-hidden="true"
       />
@@ -154,22 +125,27 @@ export function Navbar() {
       {/* Mobile Menu */}
       <aside 
         id="mobile-menu"
-        ref={menuRef}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
-        className="fixed top-0 end-0 bottom-0 w-[300px] max-w-[80vw] z-[95] bg-surface dark:bg-surface-dim border-s border-outline-variant/30 shadow-2xl flex flex-col pt-24 px-6 md:hidden"
-        style={{ transform: locale === 'ar' ? 'translateX(-100%)' : 'translateX(100%)' }}
+        className={`fixed top-0 end-0 bottom-0 w-[300px] max-w-[80vw] z-[95] bg-surface dark:bg-surface-dim border-s border-outline-variant/30 shadow-2xl flex flex-col pt-24 px-6 md:hidden transition-transform duration-500 ease-out ${
+          isOpen ? 'translate-x-0' : (locale === 'ar' ? '-translate-x-full' : 'translate-x-full')
+        }`}
       >
         <div className="flex flex-col gap-6">
-          {navLinks.map((link) => {
+          {navLinks.map((link, idx) => {
             const isActive = pathname === link.path;
             return (
               <Link 
                 key={link.path}
                 href={link.path} 
                 onClick={closeMenu}
-                className={`mobile-nav-link text-2xl font-display-md transition-colors ${isActive ? 'text-primary' : 'text-on-surface hover:text-primary'}`}
+                className={`text-2xl font-display-md transition-all duration-300 ${
+                  isActive ? 'text-primary' : 'text-on-surface hover:text-primary'
+                } ${
+                  isOpen ? 'opacity-100 translate-x-0' : (locale === 'ar' ? 'opacity-0 -translate-x-4' : 'opacity-0 translate-x-4')
+                }`}
+                style={{ transitionDelay: isOpen ? `${idx * 50 + 150}ms` : '0ms' }}
               >
                 {link.name}
               </Link>

@@ -1,27 +1,46 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { Network, Shield, Database, Cpu, Wind, Cable, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const Threads = dynamic(() => import("@/components/ui/Threads"), {
-  ssr: false,
-  loading: () => <div className="w-full h-full" />,
-});
-
 export function CoreCapabilities() {
   const t = useTranslations("CoreCapabilities");
+  const sectionRef = useRef<HTMLElement>(null);
+  const [ThreadsComp, setThreadsComp] = useState<React.ComponentType<any> | null>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          import("@/components/ui/Threads").then((mod) => {
+            setThreadsComp(() => mod.default);
+          });
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="relative py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low/50 overflow-hidden">
+    <section ref={sectionRef} className="relative py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low/50 overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-40">
-        <Threads
-          amplitude={1.5}
-          distance={0}
-          enableMouseInteraction={true}
-          color={[0.81, 0.74, 1.0]}
-        />
+        {ThreadsComp && (
+          <ThreadsComp
+            amplitude={1.5}
+            distance={0}
+            enableMouseInteraction={true}
+            color={[0.81, 0.74, 1.0]}
+          />
+        )}
       </div>
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="mb-xl text-center">
