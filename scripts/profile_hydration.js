@@ -242,15 +242,21 @@ async function profileHydration(wsDebuggerUrl, cpuThrottleRate = 4) {
 }
 
 async function main() {
-  console.log('Starting Chrome in headless mode for hydration profiling...');
-  const tmpDir = path.join(process.cwd(), '.chrome-profile-test');
-  if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+  console.log('Starting Chrome in clean isolated headless mode for hydration profiling...');
+  const os = require('os');
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'chrome-prof-clean-'));
 
   const chromeProc = spawn(CHROME_PATH, [
     `--remote-debugging-port=${PORT}`,
     `--user-data-dir=${tmpDir}`,
     '--headless=new',
     '--disable-gpu',
+    '--disable-extensions',
+    '--disable-default-apps',
+    '--disable-background-networking',
+    '--disable-sync',
+    '--disable-component-extensions-with-background-pages',
+    '--incognito',
     '--no-first-run',
     '--no-default-browser-check'
   ]);
