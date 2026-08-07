@@ -261,14 +261,24 @@ void main() {
 
       let lastTime = 0;
       const targetInterval = 1000 / 30; // 30 FPS for ambient background shader
+      let lastActivity = performance.now();
+      const IDLE_TIMEOUT = 2500;
+
+      const triggerActivity = () => {
+        lastActivity = performance.now();
+        if (isVisible && !animationIdRef.current) {
+          animationIdRef.current = requestAnimationFrame(loop);
+        }
+      };
 
       const loop = (t: number) => {
-        if (!rendererRef.current || !uniformsRef.current || !meshRef.current) {
+        if (!rendererRef.current || !uniformsRef.current || !meshRef.current || !isVisible) {
+          animationIdRef.current = null;
           return;
         }
 
         if (document.hidden) {
-          animationIdRef.current = requestAnimationFrame(loop);
+          animationIdRef.current = null;
           return;
         }
 
@@ -292,14 +302,23 @@ void main() {
 
         try {
           renderer.render({ scene: mesh });
-          animationIdRef.current = requestAnimationFrame(loop);
         } catch (error) {
           console.warn('WebGL rendering error:', error);
+          animationIdRef.current = null;
           return;
         }
+
+        if (t - lastActivity > IDLE_TIMEOUT) {
+          animationIdRef.current = null;
+          return;
+        }
+
+        animationIdRef.current = requestAnimationFrame(loop);
       };
 
       window.addEventListener('resize', updatePlacement);
+      window.addEventListener('scroll', triggerActivity, { passive: true });
+      window.addEventListener('mousemove', triggerActivity, { passive: true });
       updatePlacement();
       animationIdRef.current = requestAnimationFrame(loop);
 
@@ -310,6 +329,8 @@ void main() {
         }
 
         window.removeEventListener('resize', updatePlacement);
+        window.removeEventListener('scroll', triggerActivity);
+        window.removeEventListener('mousemove', triggerActivity);
 
         if (renderer) {
           try {

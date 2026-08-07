@@ -26,7 +26,7 @@ uniform vec2 uMouse;
 
 #define PI 3.1415926538
 
-const int u_line_count = 40;
+const int u_line_count = 24;
 const float u_line_width = 7.0;
 const float u_line_blur = 10.0;
 
@@ -195,18 +195,29 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     resizeObserver.observe(container);
     window.addEventListener('resize', resize);
 
+    let lastActivity = performance.now();
+    const IDLE_TIMEOUT = 2500; // Settle after 2.5s of no interaction
+
+    function triggerActivity() {
+      lastActivity = performance.now();
+      if (isVisible) startLoop();
+    }
+
     function handleMouseMove(e: MouseEvent) {
       if (!container) return;
       if (!cachedRect) cachedRect = container.getBoundingClientRect();
       const x = (e.clientX - cachedRect.left) / cachedRect.width;
       const y = 1.0 - (e.clientY - cachedRect.top) / cachedRect.height;
       targetMouse = [x, y];
+      triggerActivity();
     }
     function handleMouseLeave() {
       targetMouse = [0.5, 0.5];
+      triggerActivity();
     }
     container.addEventListener('mousemove', handleMouseMove, { passive: true });
-    container.addEventListener('mouseleave', handleMouseLeave);
+    container.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+    window.addEventListener('scroll', triggerActivity, { passive: true });
 
     let lastTime = 0;
     const targetInterval = 1000 / 30; // 30 FPS for WebGL wave shader
@@ -248,6 +259,12 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
           renderer.render({ scene: mesh });
         }
 
+        // Settle loop when idle to eliminate CPU drain and TBT
+        if (t - lastActivity > IDLE_TIMEOUT) {
+          animationFrameId.current = null;
+          return;
+        }
+
         animationFrameId.current = requestAnimationFrame(update);
       }
       animationFrameId.current = requestAnimationFrame(update);
@@ -267,7 +284,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
         if (isVisible) {
           if (!isInitialized) initGL();
           cachedRect = container.getBoundingClientRect();
-          startLoop();
+          triggerActivity();
         } else {
           stopLoop();
         }
@@ -281,6 +298,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       window.removeEventListener('resize', resize);
+      window.removeEventListener('scroll', triggerActivity);
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
       if (gl && gl.canvas && container.contains(gl.canvas)) {

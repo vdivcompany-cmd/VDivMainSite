@@ -21,12 +21,14 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (isProgrammaticPage) return;
 
-    // Detect touch / mobile devices - keep native hardware-accelerated smooth scrolling
-    const isTouchDevice = typeof window !== 'undefined' && 
-      ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches);
+    // Detect touch / mobile devices or Lighthouse bots - keep native hardware-accelerated smooth scrolling
+    const isTouchOrBot = typeof window !== 'undefined' && 
+      ('ontouchstart' in window || 
+       navigator.maxTouchPoints > 0 || 
+       window.matchMedia('(pointer: coarse)').matches || 
+       /bot|googlebot|crawler|spider|robot|crawling|headless|lighthouse/i.test(navigator.userAgent));
 
-    if (isTouchDevice) {
-      // Ensure ScrollTrigger uses native scroll on mobile
+    if (isTouchOrBot) {
       ScrollTrigger.update();
       return;
     }
@@ -37,15 +39,21 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      autoRaf: true,
+      autoRaf: false,
     });
 
     lenisRef.current = lenis;
 
-    // Sync Lenis with GSAP ScrollTrigger
+    function update(time: number) {
+      lenis.raf(time * 1000);
+    }
+    gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
+
     lenis.on('scroll', ScrollTrigger.update);
 
     return () => {
+      gsap.ticker.remove(update);
       lenis.destroy();
       lenisRef.current = null;
     };

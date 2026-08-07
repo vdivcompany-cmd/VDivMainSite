@@ -1,216 +1,132 @@
 [
   {
     "pagePath": "/en",
-    "totalRecordedMs": 10109.018,
-    "idleTime": 9973.519,
-    "programTime": 132.078,
+    "totalRecordedMs": 10087.896,
+    "idleTime": 9902.046,
+    "programTime": 177.987,
     "gcTime": 0,
-    "jsTime": 3.421,
+    "jsTime": 7.8629999999999995,
     "topFunctions": [
       {
         "name": "(idle)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 9973.519
+        "timeMs": 9902.046
       },
       {
         "name": "(program)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 132.078
+        "timeMs": 177.987
       },
       {
         "name": "e",
         "url": "http://localhost:3005/_next/static/chunks/3nvz6bg756gbu.js",
         "line": 0,
         "col": 37680,
-        "timeMs": 3.421
+        "timeMs": 6.58
+      },
+      {
+        "name": "requestAnimationFrame",
+        "url": "",
+        "line": -1,
+        "col": -1,
+        "timeMs": 1.283
       }
     ]
   },
   {
     "pagePath": "/en/about",
-    "totalRecordedMs": 10115.666,
-    "idleTime": 6238.568,
-    "programTime": 3838.538,
+    "totalRecordedMs": 10155.435,
+    "idleTime": 9954.747,
+    "programTime": 200.688,
     "gcTime": 0,
-    "jsTime": 38.559999999999995,
+    "jsTime": 0,
     "topFunctions": [
       {
         "name": "(idle)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 6238.568
+        "timeMs": 9954.747
       },
       {
         "name": "(program)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 3838.538
-      },
-      {
-        "name": "e",
-        "url": "http://localhost:3005/_next/static/chunks/3nvz6bg756gbu.js",
-        "line": 0,
-        "col": 37680,
-        "timeMs": 7.999
-      },
-      {
-        "name": "requestAnimationFrame",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 4.472
-      },
-      {
-        "name": "value",
-        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
-        "line": 0,
-        "col": 54166,
-        "timeMs": 3.277
-      },
-      {
-        "name": "x",
-        "url": "http://localhost:3005/_next/static/chunks/0erolmar90dhm.js",
-        "line": 0,
-        "col": 6379,
-        "timeMs": 3.145
-      },
-      {
-        "name": "drawArrays",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 2.938
-      },
-      {
-        "name": "clear",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 2.763
-      },
-      {
-        "name": "value",
-        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
-        "line": 0,
-        "col": 13878,
-        "timeMs": 2.164
-      },
-      {
-        "name": "t",
-        "url": "http://localhost:3005/_next/static/chunks/09h69ur1ey_0y.js",
-        "line": 0,
-        "col": 14078,
-        "timeMs": 1.678
-      },
-      {
-        "name": "(anonymous)",
-        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
-        "line": 0,
-        "col": 25285,
-        "timeMs": 1.659
-      },
-      {
-        "name": "value",
-        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
-        "line": 0,
-        "col": 48318,
-        "timeMs": 1.633
-      },
-      {
-        "name": "value",
-        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
-        "line": 0,
-        "col": 13275,
-        "timeMs": 1.614
-      },
-      {
-        "name": "enable",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 1.605
-      },
-      {
-        "name": "(anonymous)",
-        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
-        "line": 0,
-        "col": 19220,
-        "timeMs": 1.36
+        "timeMs": 200.688
       }
     ]
   },
   {
     "pagePath": "/en/projects",
-    "totalRecordedMs": 10127.231,
-    "idleTime": 9977.365,
-    "programTime": 147.717,
+    "totalRecordedMs": 10137.356,
+    "idleTime": 9974.503,
+    "programTime": 162.853,
     "gcTime": 0,
-    "jsTime": 2.149,
+    "jsTime": 0,
     "topFunctions": [
       {
         "name": "(idle)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 9977.365
+        "timeMs": 9974.503
       },
       {
         "name": "(program)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 147.717
-      },
-      {
-        "name": "t",
-        "url": "http://localhost:3005/_next/static/chunks/2voogrsl_ut10.js",
-        "line": 0,
-        "col": 33019,
-        "timeMs": 2.149
+        "timeMs": 162.853
       }
     ]
   },
   {
     "pagePath": "/en/contact",
-    "totalRecordedMs": 10107.937,
-    "idleTime": 9962.616,
-    "programTime": 140.692,
+    "totalRecordedMs": 10087.055,
+    "idleTime": 9943.667,
+    "programTime": 137.177,
     "gcTime": 0,
-    "jsTime": 4.629,
+    "jsTime": 6.211,
     "topFunctions": [
       {
         "name": "(idle)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 9962.616
+        "timeMs": 9943.667
       },
       {
         "name": "(program)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 140.692
+        "timeMs": 137.177
+      },
+      {
+        "name": "tb",
+        "url": "http://localhost:3005/_next/static/chunks/3nvz6bg756gbu.js",
+        "line": 0,
+        "col": 17124,
+        "timeMs": 2.18
+      },
+      {
+        "name": "tS.update",
+        "url": "http://localhost:3005/_next/static/chunks/3nvz6bg756gbu.js",
+        "line": 0,
+        "col": 33382,
+        "timeMs": 2.143
       },
       {
         "name": "e",
         "url": "http://localhost:3005/_next/static/chunks/3nvz6bg756gbu.js",
         "line": 0,
         "col": 37680,
-        "timeMs": 2.451
-      },
-      {
-        "name": "requestAnimationFrame",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 2.178
+        "timeMs": 1.888
       }
     ]
   }

@@ -108,6 +108,14 @@ void main() {
 
     const mouse = { x: canvas.width / 2, y: canvas.height / 2 };
 
+    let lastActivity = performance.now();
+    const IDLE_TIMEOUT = 2500;
+
+    function triggerActivity() {
+      lastActivity = performance.now();
+      if (isVisible) startLoop();
+    }
+
     const onMouseMove = (event: MouseEvent) => {
       if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
       if (cachedRect.width && cachedRect.height) {
@@ -116,15 +124,27 @@ void main() {
         mouse.x = nx * canvas.width;
         mouse.y = ny * canvas.height;
       }
+      triggerActivity();
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('scroll', triggerActivity, { passive: true });
+
+    let lastTime = 0;
+    const targetInterval = 1000 / 30; // 30 FPS
 
     function render(t: number) {
       if (!gl || !canvas || !isVisible || document.hidden) {
         animationFrameId = null;
         return;
       }
+
+      const elapsed = t - lastTime;
+      if (elapsed < targetInterval) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+      lastTime = t - (elapsed % targetInterval);
 
       gl.viewport(0, 0, canvas.width, canvas.height);
 
@@ -133,6 +153,12 @@ void main() {
       if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
 
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+      if (t - lastActivity > IDLE_TIMEOUT) {
+        animationFrameId = null;
+        return;
+      }
+
       animationFrameId = requestAnimationFrame(render);
     }
 
@@ -153,7 +179,7 @@ void main() {
         isVisible = entry.isIntersecting;
         if (isVisible) {
           cachedRect = canvas.getBoundingClientRect();
-          startLoop();
+          triggerActivity();
         } else {
           stopLoop();
         }
@@ -166,6 +192,7 @@ void main() {
       stopLoop();
       intersectionObserver.disconnect();
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('scroll', triggerActivity);
       resizeObserver.disconnect();
 
       if (gl) {
