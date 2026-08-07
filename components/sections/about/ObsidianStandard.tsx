@@ -1,12 +1,10 @@
-"use client";
-
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/ui/Reveal";
 import { CheckCircle2, Shield } from "lucide-react";
 
-export function ObsidianStandard() {
-  const t = useTranslations("AboutRedesign");
+export async function ObsidianStandard() {
+  const t = await getTranslations("AboutRedesign");
 
   return (
     <section className="px-margin-mobile md:px-margin-desktop py-xl mb-xl">
@@ -16,7 +14,7 @@ export function ObsidianStandard() {
           <Image 
             className="w-full h-full object-cover" 
             alt="Obsidian Standard"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoG2xlp7aiWPWVBs7xMD0XrC3GpEsc8RppKC3taMvhAVbIrrRpxZG_o0QkNKS3-Y65TGSbnd-eV20g7ohq7kCjILqfD3UdFQq6dCvYUmJn022CSVMJalNdYfHPAEp2QjEx7QBhjTyiNE0Eql2T85Uz6ssB-9gC3y1pBIx20amD3Weh5T56wpGeC6xiUkeMBvQEFrNK5RGtr17A8-5bUFfdzSm1K-8ov7--ID6GnH1XETX-jKhPZv3-NA" 
+            src="/images/obsidian-standard.webp"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
           />

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from 'react';
-import 'lenis/dist/lenis.css';
 import { usePathname } from '@/i18n/routing';
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {

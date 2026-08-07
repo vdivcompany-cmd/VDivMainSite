@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @plugin "tailwindcss-animate";
@@ -229,46 +228,6 @@
   line-height: 1.4;
 }
 
-@utility max-w-sm {
-  max-width: 24rem;
-}
-
-@utility max-w-md {
-  max-width: 28rem;
-}
-
-@utility max-w-lg {
-  max-width: 32rem;
-}
-
-@utility max-w-xl {
-  max-width: 36rem;
-}
-
-@utility max-w-2xl {
-  max-width: 42rem;
-}
-
-@utility max-w-3xl {
-  max-width: 48rem;
-}
-
-@utility max-w-4xl {
-  max-width: 56rem;
-}
-
-@utility max-w-5xl {
-  max-width: 64rem;
-}
-
-@utility max-w-6xl {
-  max-width: 72rem;
-}
-
-@utility max-w-7xl {
-  max-width: 80rem;
-}
-
 @utility container {
   width: 100%;
   max-width: 1200px;
@@ -292,4 +251,32 @@
   html {
     @apply font-sans;
   }
+}
+
+/* Lenis Smooth Scroll Rules */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
 }

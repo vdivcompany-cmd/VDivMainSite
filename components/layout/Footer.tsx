@@ -1,13 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Code2, Shield, Network } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
-import { useTranslations } from "next-intl";
-
-export function Footer() {
-  const t = useTranslations("Footer");
+export async function Footer() {
+  const t = await getTranslations("Footer");
 
   return (
     <footer className="relative w-full py-xl bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 dark:border-primary/5">
@@ -17,7 +14,7 @@ export function Footer() {
             <Image
               alt="VDiv Logo"
               className="h-10 md:h-12 w-auto object-contain object-left"
-              src="/LOGO-Nav-footer.png"
+              src="/LOGO-Nav-footer.webp"
               width={180}
               height={48}
             />

@@ -66,12 +66,18 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const allMessages = await getMessages() as Record<string, any>;
+  const clientMessages = {
+    Navbar: allMessages.Navbar,
+    ContactUs: allMessages.ContactUs,
+    AboutRedesign: allMessages.AboutRedesign,
+    ProjectsShowcase: allMessages.ProjectsShowcase,
+  };
 
   return (
     <html lang={locale} suppressHydrationWarning dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body className={`${hanken.variable} ${inter.variable} ${jetbrains.variable} bg-background text-on-background font-body-md selection:bg-primary/30 selection:text-on-primary overflow-x-hidden antialiased`}>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={clientMessages}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
             <SmoothScroll>
               <Navbar />

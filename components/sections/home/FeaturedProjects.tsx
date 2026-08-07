@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export function FeaturedProjects() {
-  const t = useTranslations("FeaturedProjects");
+export async function FeaturedProjects() {
+  const t = await getTranslations("FeaturedProjects");
 
   return (
     <section className="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-highest/30">
@@ -25,7 +25,7 @@ export function FeaturedProjects() {
               <Image 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                 alt="Offshore Node" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGzv6D115ocp1g8DMHhbstUUEWsRp6UR7jrUay6DPo0Q8wV_56w01eCfBbZjOYPVRbC1W6Cp8uqVKF_ryHpiKIXmU7PPoDR6Z27ZyG5xjXPi9b1YWhs0bFMdZtdw-aKMibBrxUc6P0UfzZf8wODIB6W9gkU_r3b3rmudQQ_tWq0x8U8ALlp3S2tqBoNoNyfZ6mQ2qKaQitP7AJSHTPVQcxZDSymL3dCZ6G-2ZGFIPcTlXZM7tygrfDiw"
+                src="/images/project-featured-1.webp"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
@@ -47,7 +47,7 @@ export function FeaturedProjects() {
               <Image 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                 alt="Aerospace" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Xvml8SRymplFVlN4tkizCtVVN_hDlInKP2uHobs3dROWRXdXZoZPldvYLP5R4CxynPhaEaLsXZuDLoNKRm37QwNtArn878LrN3Dz5UUzo4LJeoRlPrUUswm0LCgl-XQNf2Q9YNKo_BqOlZg1uPudZQZsN7qatqABJ9NuvQ1EpPYndVo0PtWMH1gQnWGlYUUGZ2EqvdsvoWyBgzcdYgWgNqySoPDm3zTUeP3-fiY-4lQDbeDZboGvuw"
+                src="/images/project-featured-2.webp"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />

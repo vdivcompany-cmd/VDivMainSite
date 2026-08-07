@@ -58,7 +58,7 @@ export function Navbar() {
             <Image
               alt="VDiv Logo"
               className="h-8 md:h-10 w-auto object-contain"
-              src="/LOGO-Nav-footer.png"
+              src="/LOGO-Nav-footer.webp"
               width={160}
               height={40}
               priority

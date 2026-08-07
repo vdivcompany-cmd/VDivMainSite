@@ -1,60 +1,14 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { Network, Shield, Database, Cpu, Wind, Cable, ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { CoreCapabilitiesBackground } from "./CoreCapabilitiesBackground";
 
-export function CoreCapabilities() {
-  const t = useTranslations("CoreCapabilities");
-  const sectionRef = useRef<HTMLElement>(null);
-  const [ThreadsComp, setThreadsComp] = useState<React.ComponentType<any> | null>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const mql = window.matchMedia("(min-width: 768px)");
-    if (!mql.matches) return; // Do not download or initialize Threads on mobile
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && window.matchMedia("(min-width: 768px)").matches) {
-          const loadThreads = () => {
-            import("@/components/ui/Threads").then((mod) => {
-              setThreadsComp(() => mod.default);
-            });
-          };
-
-          if ("requestIdleCallback" in window) {
-            (window as any).requestIdleCallback(loadThreads, { timeout: 1000 });
-          } else {
-            setTimeout(loadThreads, 50);
-          }
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "300px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+export async function CoreCapabilities() {
+  const t = await getTranslations("CoreCapabilities");
 
   return (
-    <section ref={sectionRef} className="relative py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low/50 overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-40">
-        {ThreadsComp ? (
-          <ThreadsComp
-            amplitude={1.5}
-            distance={0}
-            enableMouseInteraction={true}
-            color={[0.81, 0.74, 1.0]}
-          />
-        ) : (
-          <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-tertiary/5 to-transparent pointer-events-none" />
-        )}
-      </div>
+    <section className="relative py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low/50 overflow-hidden">
+      <CoreCapabilitiesBackground />
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="mb-xl text-center">
           <h2 className="font-headline-lg text-headline-lg text-on-surface mb-sm">{t('title')}</h2>

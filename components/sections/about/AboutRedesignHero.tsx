@@ -119,7 +119,7 @@ export function AboutRedesignHero() {
             <Image
               alt="VDiv Logo"
               className="relative z-10 w-full h-auto drop-shadow-[0_0_50px_rgba(207,188,255,0.2)] transform-gpu will-change-transform"
-              src="/Logo-about.png"
+              src="/Logo-about.webp"
               width={600}
               height={600}
               priority

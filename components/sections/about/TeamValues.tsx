@@ -1,13 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import { Link } from "@/i18n/routing";
 import { Target, ShieldCheck, Users, Sparkles } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export function TeamValues() {
-  const t = useTranslations("TeamValues");
+export async function TeamValues() {
+  const t = await getTranslations("TeamValues");
   return (
     <section className="py-xl relative">
       <div className="container mx-auto px-margin-mobile md:px-margin-desktop">
@@ -65,7 +63,7 @@ export function TeamValues() {
                 <Image 
                   className="w-full h-full object-cover opacity-50 grayscale" 
                   alt="Future Network" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkor53hFNxATGaK4DfsGxZujzJbMvbGFEToY6OuiLh8USLdAIpI7QaXOqDQfHxkwmHACAwE1YcO_GELgXGhEKFAo7Fujlegz60bihgFIOxlWkIw8LVjeYTQMMkmIm5eTwT1nk0-5BORE5pfeAyUrEAgowAv1C0lVft2fGffhqp6xrsHYGxzB4dImTS9SAI5DNVmaxeLlzUs0gf7qaOnNRFNJZcMGO3sl-WbScKIuUVVti-K30BL9l1Hg"
+                  src="/images/team-banner.webp"
                   fill
                   sizes="(max-width: 768px) 100vw, 256px"
                 />
@@ -78,7 +76,7 @@ export function TeamValues() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-lg">
           <Reveal direction="up" className="text-center group">
             <div className="aspect-square rounded-full border-2 border-outline-variant p-1 group-hover:border-primary transition-all mb-md mx-auto max-w-[160px]">
-              <Image className="w-full h-full object-cover rounded-full" alt="Elena Vance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0MGjX91AJx9M4qRk5lGOtPZvGSusQEsnPd69ymyV_5_w_nuJdVJaN4xb3At4Ko5NHfXmrvPDw5PnDyZw3NL2BWUeYSm5qbQOM4-kKyXMGGMT7M1mAEAIDBGpEie8Dq7PVNcEe0aJspNqSRs4ADFeIk3t1Pm8XshV55VY2m1brlsqW5JIfBvYg-orLlsUJ-6DIwrdQg9JICHG6LrE24zrSKeD-B0rDgE0TeTBldQzieWv2YCgHR8K0Q" width={160} height={160} />
+              <Image className="w-full h-full object-cover rounded-full" alt="Elena Vance" src="/images/avatar-elena.webp" width={160} height={160} />
             </div>
             <h4 className="font-headline-md text-headline-md text-on-surface">Elena Vance</h4>
             <p className="font-label-caps text-label-caps text-primary">{t('t1_role')}</p>
@@ -86,7 +84,7 @@ export function TeamValues() {
 
           <Reveal direction="up" delay={0.1} className="text-center group">
             <div className="aspect-square rounded-full border-2 border-outline-variant p-1 group-hover:border-primary transition-all mb-md mx-auto max-w-[160px]">
-              <Image className="w-full h-full object-cover rounded-full" alt="Marcus Thorne" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYy7MKQ7jPGYW_9Ou888rfyphCpPze3yw0bYNHacq1AH7xRdOT7hg8cMZf85EAMuhWVdESwXSWAxBLFrlZdktRaPh8asiOte-CfW06LMBpolc8TdO8eqeqlu5NuebbOp5vD8wt1t-WEqqcO6d3aVP984UXfhMV1adNQ3YNot9rYT-9GNRxx615t7ew0CewrJRs8TQRrx629caniyO7TaXBKCqi3NwjDojvpjZ3kitRD3wt_3zHuVeCjQ" width={160} height={160} />
+              <Image className="w-full h-full object-cover rounded-full" alt="Marcus Thorne" src="/images/avatar-marcus.webp" width={160} height={160} />
             </div>
             <h4 className="font-headline-md text-headline-md text-on-surface">Marcus Thorne</h4>
             <p className="font-label-caps text-label-caps text-primary">{t('t2_role')}</p>
@@ -94,7 +92,7 @@ export function TeamValues() {
 
           <Reveal direction="up" delay={0.2} className="text-center group">
             <div className="aspect-square rounded-full border-2 border-outline-variant p-1 group-hover:border-primary transition-all mb-md mx-auto max-w-[160px]">
-              <Image className="w-full h-full object-cover rounded-full" alt="Sana K." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnsjwq3nAs7vz-yOmNxhfnKgbGmtkmHFH6Z0z1aJivVLvdVjCfiKJcXrZoSN6OW3YI5RCIXBXj87v05Pnl6q3w9xLnnsFEODK1XQktDF5OBTqqJZ6fy5wHizyTWcOAe3YgGWsp_vQefQSaHWXrPFu0Bf-Y6IBgEyWIrqRzDab6oVZsK04xQ4DRSrcYh-NquRRpBu5nwqesLe5ZhR3QolMsMY9QUEp11JJeIlw8phupUeUZsyNKHCXCRA" width={160} height={160} />
+              <Image className="w-full h-full object-cover rounded-full" alt="Sana K." src="/images/avatar-sana.webp" width={160} height={160} />
             </div>
             <h4 className="font-headline-md text-headline-md text-on-surface">Sana K.</h4>
             <p className="font-label-caps text-label-caps text-primary">{t('t3_role')}</p>
@@ -102,7 +100,7 @@ export function TeamValues() {
 
           <Reveal direction="up" delay={0.3} className="text-center group">
             <div className="aspect-square rounded-full border-2 border-outline-variant p-1 group-hover:border-primary transition-all mb-md mx-auto max-w-[160px]">
-              <Image className="w-full h-full object-cover rounded-full" alt="Julian Rex" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALMGtte3XNI1px4vieWSSLcLe3FVkbiipNthdRKF0W7enM6Sn-4BHXZTnP3ZvLb0hIFBXyGud2TcJRpseENkUBgBnhWp_I5V7y1lhdjXYzTPWMc-E8Vv52lBM62zXrZws1noKqH2geF11q4dCK9MS_0E3Opwr-soDJ_xWR2BnU5gcBJ7XRUGzWS2THhBWnTE1e8m27yTuzOQEMOU7QnoJb4r7iO9S9ZVIeim-EX9wuI3aVqjQOmGi9Tg" width={160} height={160} />
+              <Image className="w-full h-full object-cover rounded-full" alt="Julian Rex" src="/images/avatar-julian.webp" width={160} height={160} />
             </div>
             <h4 className="font-headline-md text-headline-md text-on-surface">Julian Rex</h4>
             <p className="font-label-caps text-label-caps text-primary">{t('t4_role')}</p>

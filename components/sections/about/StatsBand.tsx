@@ -1,11 +1,9 @@
-"use client";
-
 import { Reveal } from "@/components/ui/Reveal";
 import { Box } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export function StatsBand() {
-  const t = useTranslations("StatsBand");
+export async function StatsBand() {
+  const t = await getTranslations("StatsBand");
   return (
     <>
       <section className="py-xl relative border-b border-outline-variant/10">

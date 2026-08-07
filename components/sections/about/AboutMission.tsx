@@ -1,11 +1,9 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/ui/Reveal";
 import { Target, Terminal } from "lucide-react";
 
-export function AboutMission() {
-  const t = useTranslations("AboutRedesign");
+export async function AboutMission() {
+  const t = await getTranslations("AboutRedesign");
 
   return (
     <section className="px-margin-mobile md:px-margin-desktop py-xl border-t border-outline-variant/10 relative">

@@ -1,10 +1,8 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function AboutStatsRedux() {
-  const t = useTranslations("AboutRedesign");
+export async function AboutStatsRedux() {
+  const t = await getTranslations("AboutRedesign");
 
   return (
     <section className="bg-surface-container py-xl border-y border-outline-variant/20">

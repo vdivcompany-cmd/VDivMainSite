@@ -1,10 +1,8 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function ContactHeader() {
-  const t = useTranslations("ContactUs");
+export async function ContactHeader() {
+  const t = await getTranslations("ContactUs");
 
   return (
     <header className="mb-xl text-center md:text-left">

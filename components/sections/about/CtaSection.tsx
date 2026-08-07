@@ -1,10 +1,8 @@
-"use client";
-
 import { Reveal } from "@/components/ui/Reveal";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export function CtaSection() {
-  const t = useTranslations("CtaSection");
+export async function CtaSection() {
+  const t = await getTranslations("CtaSection");
   return (
     <>
       <section className="py-xl relative border-t border-outline-variant/10 overflow-hidden" id="manifesto">

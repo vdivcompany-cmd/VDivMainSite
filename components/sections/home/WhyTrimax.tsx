@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export function WhyTrimax() {
-  const t = useTranslations("WhyTrimax");
+export async function WhyTrimax() {
+  const t = await getTranslations("WhyTrimax");
   return (
     <section className="py-xl px-margin-mobile md:px-margin-desktop overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
@@ -13,7 +13,7 @@ export function WhyTrimax() {
               <Image 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
                 alt="Laboratory clean room" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeYrSz6V8O71B5wSXvc2DlY7X_NnjOi4IWDk77LRtbSFVkAjXwPMI05y4jFboL2RnCxWYU1pu9AzBq7OXTpVa3JxCjYqRURv2DNMoZv6Ixm938FdAO0VYJPZgK_5asO8u4uOOfP31HfLoBxfU9weQbNhtknl6VBIvmZnUZFnex-NDeRmp-wKjaVWAq6HI30QwLPEkN9fWuj44J_jz2m83ndQ6AMVcQfKoUl2St_iB_Jlfh1uJISIZRSw"
+                src="/images/why-trimax.webp"
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
               />
