@@ -6,6 +6,12 @@ const withNextIntl = createNextIntlPlugin(
 );
 
 const nextConfig: NextConfig = {
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'gsap', '@gsap/react', 'ogl', 'three', 'lenis'],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

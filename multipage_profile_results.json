@@ -1,221 +1,155 @@
 [
   {
     "pagePath": "/en",
-    "totalRecordedMs": 10112.97,
-    "idleTime": 9942.838,
-    "programTime": 157.533,
+    "totalRecordedMs": 10109.018,
+    "idleTime": 9973.519,
+    "programTime": 132.078,
     "gcTime": 0,
-    "jsTime": 12.599,
+    "jsTime": 3.421,
     "topFunctions": [
       {
         "name": "(idle)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 9942.838
+        "timeMs": 9973.519
       },
       {
         "name": "(program)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 157.533
-      },
-      {
-        "name": "requestAnimationFrame",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 3.69
-      },
-      {
-        "name": "ty",
-        "url": "http://localhost:3005/_next/static/chunks/403lwfb2nv44x.js",
-        "line": 0,
-        "col": 16060,
-        "timeMs": 2.175
-      },
-      {
-        "name": "raf",
-        "url": "http://localhost:3005/_next/static/chunks/441zed6za__q6.js",
-        "line": 0,
-        "col": 27401,
-        "timeMs": 2.079
+        "timeMs": 132.078
       },
       {
         "name": "e",
-        "url": "http://localhost:3005/_next/static/chunks/403lwfb2nv44x.js",
+        "url": "http://localhost:3005/_next/static/chunks/3nvz6bg756gbu.js",
         "line": 0,
-        "col": 36619,
-        "timeMs": 1.931
-      },
-      {
-        "name": "e3",
-        "url": "http://localhost:3005/_next/static/chunks/0iec5q4ack_04.js",
-        "line": 0,
-        "col": 20064,
-        "timeMs": 1.624
-      },
-      {
-        "name": "fz",
-        "url": "http://localhost:3005/_next/static/chunks/0iec5q4ack_04.js",
-        "line": 0,
-        "col": 200677,
-        "timeMs": 1.1
+        "col": 37680,
+        "timeMs": 3.421
       }
     ]
   },
   {
     "pagePath": "/en/about",
-    "totalRecordedMs": 10118.269,
-    "idleTime": 5405.751,
-    "programTime": 4688.572,
-    "gcTime": 1.585,
-    "jsTime": 22.361000000000004,
+    "totalRecordedMs": 10115.666,
+    "idleTime": 6238.568,
+    "programTime": 3838.538,
+    "gcTime": 0,
+    "jsTime": 38.559999999999995,
     "topFunctions": [
       {
         "name": "(idle)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 5405.751
+        "timeMs": 6238.568
       },
       {
         "name": "(program)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 4688.572
+        "timeMs": 3838.538
+      },
+      {
+        "name": "e",
+        "url": "http://localhost:3005/_next/static/chunks/3nvz6bg756gbu.js",
+        "line": 0,
+        "col": 37680,
+        "timeMs": 7.999
       },
       {
         "name": "requestAnimationFrame",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 4.95
+        "timeMs": 4.472
       },
       {
-        "name": "W",
-        "url": "http://localhost:3005/_next/static/chunks/1bbm5w7klow82.js",
-        "line": 98,
-        "col": 746,
-        "timeMs": 3.312
+        "name": "value",
+        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
+        "line": 0,
+        "col": 54166,
+        "timeMs": 3.277
       },
       {
-        "name": "(anonymous)",
-        "url": "http://localhost:3005/_next/static/chunks/2r5_fy8jizze2.js",
-        "line": 4,
-        "col": 2527,
-        "timeMs": 3.23
+        "name": "x",
+        "url": "http://localhost:3005/_next/static/chunks/0erolmar90dhm.js",
+        "line": 0,
+        "col": 6379,
+        "timeMs": 3.145
+      },
+      {
+        "name": "drawArrays",
+        "url": "",
+        "line": -1,
+        "col": -1,
+        "timeMs": 2.938
       },
       {
         "name": "clear",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 3.184
+        "timeMs": 2.763
       },
       {
-        "name": "render",
-        "url": "http://localhost:3005/_next/static/chunks/2r5_fy8jizze2.js",
+        "name": "value",
+        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
         "line": 0,
-        "col": 11255,
-        "timeMs": 1.605
+        "col": 13878,
+        "timeMs": 2.164
       },
       {
-        "name": "(garbage collector)",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 1.585
-      },
-      {
-        "name": "updateMatrixWorld",
-        "url": "http://localhost:3005/_next/static/chunks/2r5_fy8jizze2.js",
-        "line": 4,
-        "col": 24475,
-        "timeMs": 1.558
-      },
-      {
-        "name": "compose",
-        "url": "http://localhost:3005/_next/static/chunks/2r5_fy8jizze2.js",
-        "line": 4,
-        "col": 19260,
-        "timeMs": 1.524
-      },
-      {
-        "name": "getRenderList",
-        "url": "http://localhost:3005/_next/static/chunks/2r5_fy8jizze2.js",
+        "name": "t",
+        "url": "http://localhost:3005/_next/static/chunks/09h69ur1ey_0y.js",
         "line": 0,
-        "col": 10708,
-        "timeMs": 1.506
+        "col": 14078,
+        "timeMs": 1.678
       },
       {
         "name": "(anonymous)",
-        "url": "http://localhost:3005/_next/static/chunks/2r5_fy8jizze2.js",
-        "line": 4,
-        "col": 6178,
-        "timeMs": 1.492
+        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
+        "line": 0,
+        "col": 25285,
+        "timeMs": 1.659
+      },
+      {
+        "name": "value",
+        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
+        "line": 0,
+        "col": 48318,
+        "timeMs": 1.633
+      },
+      {
+        "name": "value",
+        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
+        "line": 0,
+        "col": 13275,
+        "timeMs": 1.614
+      },
+      {
+        "name": "enable",
+        "url": "",
+        "line": -1,
+        "col": -1,
+        "timeMs": 1.605
+      },
+      {
+        "name": "(anonymous)",
+        "url": "http://localhost:3005/_next/static/chunks/0o79561sfdxpq.js",
+        "line": 0,
+        "col": 19220,
+        "timeMs": 1.36
       }
     ]
   },
   {
     "pagePath": "/en/projects",
-    "totalRecordedMs": 10177.856,
-    "idleTime": 9910.061,
-    "programTime": 259.73,
-    "gcTime": 0,
-    "jsTime": 8.065000000000001,
-    "topFunctions": [
-      {
-        "name": "(idle)",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 9910.061
-      },
-      {
-        "name": "(program)",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 259.73
-      },
-      {
-        "name": "oG",
-        "url": "http://localhost:3005/_next/static/chunks/0iec5q4ack_04.js",
-        "line": 0,
-        "col": 83879,
-        "timeMs": 2.319
-      },
-      {
-        "name": "tz",
-        "url": "http://localhost:3005/_next/static/chunks/403lwfb2nv44x.js",
-        "line": 0,
-        "col": 18661,
-        "timeMs": 2.142
-      },
-      {
-        "name": "av",
-        "url": "http://localhost:3005/_next/static/chunks/0iec5q4ack_04.js",
-        "line": 0,
-        "col": 63600,
-        "timeMs": 1.992
-      },
-      {
-        "name": "requestAnimationFrame",
-        "url": "",
-        "line": -1,
-        "col": -1,
-        "timeMs": 1.612
-      }
-    ]
-  },
-  {
-    "pagePath": "/en/contact",
-    "totalRecordedMs": 10190.94,
-    "idleTime": 9929.958,
-    "programTime": 258.833,
+    "totalRecordedMs": 10127.231,
+    "idleTime": 9977.365,
+    "programTime": 147.717,
     "gcTime": 0,
     "jsTime": 2.149,
     "topFunctions": [
@@ -224,21 +158,59 @@
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 9929.958
+        "timeMs": 9977.365
       },
       {
         "name": "(program)",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 258.833
+        "timeMs": 147.717
+      },
+      {
+        "name": "t",
+        "url": "http://localhost:3005/_next/static/chunks/2voogrsl_ut10.js",
+        "line": 0,
+        "col": 33019,
+        "timeMs": 2.149
+      }
+    ]
+  },
+  {
+    "pagePath": "/en/contact",
+    "totalRecordedMs": 10107.937,
+    "idleTime": 9962.616,
+    "programTime": 140.692,
+    "gcTime": 0,
+    "jsTime": 4.629,
+    "topFunctions": [
+      {
+        "name": "(idle)",
+        "url": "",
+        "line": -1,
+        "col": -1,
+        "timeMs": 9962.616
+      },
+      {
+        "name": "(program)",
+        "url": "",
+        "line": -1,
+        "col": -1,
+        "timeMs": 140.692
+      },
+      {
+        "name": "e",
+        "url": "http://localhost:3005/_next/static/chunks/3nvz6bg756gbu.js",
+        "line": 0,
+        "col": 37680,
+        "timeMs": 2.451
       },
       {
         "name": "requestAnimationFrame",
         "url": "",
         "line": -1,
         "col": -1,
-        "timeMs": 2.149
+        "timeMs": 2.178
       }
     ]
   }

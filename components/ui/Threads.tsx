@@ -180,7 +180,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
       const { clientWidth, clientHeight } = container;
       if (clientWidth === 0 || clientHeight === 0) return;
 
-      const baseDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const baseDpr = Math.min(window.devicePixelRatio || 1, 1.2);
       const longestSide = Math.max(clientWidth, clientHeight) * baseDpr;
       const dpr = longestSide > MAX_RENDER_DIM ? (baseDpr * MAX_RENDER_DIM) / longestSide : baseDpr;
       renderer.dpr = dpr;
@@ -208,6 +208,9 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     container.addEventListener('mousemove', handleMouseMove, { passive: true });
     container.addEventListener('mouseleave', handleMouseLeave);
 
+    let lastTime = 0;
+    const targetInterval = 1000 / 30; // 30 FPS for WebGL wave shader
+
     function startLoop() {
       if (animationFrameId.current !== null) return;
       function update(t: number) {
@@ -215,6 +218,13 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
           animationFrameId.current = null;
           return;
         }
+
+        const elapsed = t - lastTime;
+        if (elapsed < targetInterval) {
+          animationFrameId.current = requestAnimationFrame(update);
+          return;
+        }
+        lastTime = t - (elapsed % targetInterval);
 
         if (renderer && program && mesh) {
           const { color, amplitude, distance, enableMouseInteraction } = propsRef.current;

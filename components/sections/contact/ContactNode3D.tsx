@@ -88,7 +88,7 @@ void main() {
 
     const prog = gl.createProgram();
     if (!prog) return;
-    
+
     gl.attachShader(prog, vertexShader);
     gl.attachShader(prog, fragmentShader);
     gl.linkProgram(prog);
@@ -125,13 +125,13 @@ void main() {
         animationFrameId = null;
         return;
       }
-      
+
       gl.viewport(0, 0, canvas.width, canvas.height);
-      
+
       if (uTime) gl.uniform1f(uTime, t * 0.001);
       if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
       if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
-      
+
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       animationFrameId = requestAnimationFrame(render);
     }
@@ -167,7 +167,7 @@ void main() {
       intersectionObserver.disconnect();
       window.removeEventListener('mousemove', onMouseMove);
       resizeObserver.disconnect();
-      
+
       if (gl) {
         gl.deleteProgram(prog);
         gl.deleteShader(vertexShader);
@@ -179,19 +179,10 @@ void main() {
 
   return (
     <div className="relative w-full h-full min-h-[400px] rounded-2xl overflow-hidden glassmorphism flex items-center justify-center p-4">
-      <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className="absolute inset-0 w-full h-full object-cover pointer-events-auto"
       />
-      <div className="relative z-10 text-center pointer-events-none p-6 bg-surface-dark/80 backdrop-blur-md rounded-xl border border-surface-border">
-        <div className="w-12 h-12 rounded-full border border-primary/50 flex items-center justify-center mx-auto mb-4 text-primary animate-pulse">
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        </div>
-        <h4 className="text-xl font-bold font-heading text-white mb-2">Trimax Secure Gateway</h4>
-        <p className="text-sm text-text-muted">Interactive telemetry matrix node active.</p>
-      </div>
     </div>
   );
 }

@@ -70,11 +70,12 @@ export function AboutHero() {
         <Reveal direction="left" delay={0.4} className="relative mt-12 lg:mt-0">
           <div className="aspect-[4/5] lg:aspect-square relative rounded-2xl overflow-hidden border border-primary/20 shadow-2xl group">
             <Image
-              className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out transform-gpu will-change-transform"
+              className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out transform-gpu"
               alt="A macro photography shot of a high-end titanium mechanical component..."
               src="/Logo-home.png"
               fill
               priority
+              fetchPriority="high"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-background/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700"></div>

@@ -32,20 +32,6 @@ export function ContactSidebar() {
               </div>
               <Satellite className="text-primary animate-pulse w-5 h-5" />
             </div>
-
-            <div className="bg-surface-dim/80 backdrop-blur-md p-md rounded border border-primary/10 transition-transform duration-300 transform translate-y-2 group-hover:translate-y-0">
-              <h3 className="font-label-caps text-label-caps text-on-surface mb-xs uppercase">
-                {t('sidebar_title')}
-              </h3>
-              <p className="font-body-sm text-primary mb-0">
-                {t('sidebar_location')}
-              </p>
-              <div className="w-full h-px bg-primary/20 my-sm"></div>
-              <div className="flex justify-between font-technical-data text-[11px] text-on-surface-variant">
-                <span>{t('sidebar_active')}</span>
-                <span className="text-tertiary">{t('sidebar_encryption')}</span>
-              </div>
-            </div>
           </div>
         </div>
       </Reveal>
@@ -75,7 +61,7 @@ export function ContactSidebar() {
           <div className="flex items-center gap-md">
             <Mail className="text-tertiary w-6 h-6 shrink-0" />
             <p className="font-body-sm text-on-surface-variant leading-relaxed">
-              vdivcompany@gmail.com<br /> 
+              vdivcompany@gmail.com<br />
               <span dir="ltr" className="inline-block mt-xs">+20 1063505368</span>
             </p>
           </div>

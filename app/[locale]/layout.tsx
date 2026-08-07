@@ -11,9 +11,9 @@ import { Footer } from '@/components/layout/Footer';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { Hanken_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 
-const hanken = Hanken_Grotesk({ subsets: ['latin'], variable: '--font-hanken-grotesk' });
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono' });
+const hanken = Hanken_Grotesk({ subsets: ['latin'], variable: '--font-hanken-grotesk', display: 'swap' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', display: 'swap' });
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
