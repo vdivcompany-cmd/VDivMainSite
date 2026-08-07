@@ -282,9 +282,21 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
         const entry = entries[0];
         isVisible = entry.isIntersecting;
         if (isVisible) {
-          if (!isInitialized) initGL();
-          cachedRect = container.getBoundingClientRect();
-          triggerActivity();
+          if (!isInitialized) {
+            const runInit = () => {
+              initGL();
+              cachedRect = container.getBoundingClientRect();
+              triggerActivity();
+            };
+            if ('requestIdleCallback' in window) {
+              (window as any).requestIdleCallback(runInit, { timeout: 1000 });
+            } else {
+              setTimeout(runInit, 50);
+            }
+          } else {
+            cachedRect = container.getBoundingClientRect();
+            triggerActivity();
+          }
         } else {
           stopLoop();
         }

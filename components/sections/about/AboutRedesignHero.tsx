@@ -17,21 +17,44 @@ export function AboutRedesignHero() {
   const t = useTranslations("AboutRedesign");
   const locale = useLocale();
   const isArabic = locale === 'ar';
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktopReady, setIsDesktopReady] = useState(false);
 
   useEffect(() => {
     const mql = window.matchMedia("(min-width: 768px)");
-    setIsDesktop(mql.matches);
+    if (!mql.matches) return;
 
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    let cancelIdle: (() => void) | null = null;
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const id = (window as any).requestIdleCallback(
+          () => setIsDesktopReady(true),
+          { timeout: 1000 }
+        );
+        cancelIdle = () => (window as any).cancelIdleCallback(id);
+      } else {
+        const id = setTimeout(() => setIsDesktopReady(true), 150);
+        cancelIdle = () => clearTimeout(id);
+      }
+    }
+
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        setIsDesktopReady(true);
+      } else {
+        setIsDesktopReady(false);
+      }
+    };
     mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
+    return () => {
+      if (cancelIdle) cancelIdle();
+      mql.removeEventListener("change", handler);
+    };
   }, []);
 
   return (
     <section className="relative min-h-[90vh] flex items-center px-margin-mobile md:px-margin-desktop bg-surface-dim overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        {isDesktop ? (
+        {isDesktopReady ? (
           <LightRays
             raysOrigin="top-center"
             raysColor="#cfbcff"

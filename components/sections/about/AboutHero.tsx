@@ -13,21 +13,44 @@ const DotGrid = dynamic(() => import("@/components/ui/DotGrid"), {
 
 export function AboutHero() {
   const t = useTranslations("AboutHero");
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktopReady, setIsDesktopReady] = useState(false);
 
   useEffect(() => {
     const mql = window.matchMedia("(min-width: 768px)");
-    setIsDesktop(mql.matches);
+    if (!mql.matches) return;
 
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    let cancelIdle: (() => void) | null = null;
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const id = (window as any).requestIdleCallback(
+          () => setIsDesktopReady(true),
+          { timeout: 1000 }
+        );
+        cancelIdle = () => (window as any).cancelIdleCallback(id);
+      } else {
+        const id = setTimeout(() => setIsDesktopReady(true), 150);
+        cancelIdle = () => clearTimeout(id);
+      }
+    }
+
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        setIsDesktopReady(true);
+      } else {
+        setIsDesktopReady(false);
+      }
+    };
     mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
+    return () => {
+      if (cancelIdle) cancelIdle();
+      mql.removeEventListener("change", handler);
+    };
   }, []);
 
   return (
     <section className="relative min-h-[716px] flex items-center overflow-hidden border-b border-outline-variant/10">
       <div className="absolute inset-0 z-0">
-        {isDesktop ? (
+        {isDesktopReady ? (
           <DotGrid
             dotSize={2}
             gap={20}

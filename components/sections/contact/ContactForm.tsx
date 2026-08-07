@@ -9,8 +9,6 @@ export function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In the future, wire this up to Supabase or an email service
-    console.log("Transmission Initiated.");
   };
 
   return (

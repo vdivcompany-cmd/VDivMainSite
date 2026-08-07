@@ -244,7 +244,7 @@ const DotGrid = ({
 
     const { width, height } = wrap.getBoundingClientRect();
     cachedRectRef.current = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -266,12 +266,13 @@ const DotGrid = ({
     const startX = extraX / 2 + dotSize / 2;
     const startY = extraY / 2 + dotSize / 2;
 
-    const dots: DotItem[] = [];
+    const totalDots = rows * cols;
+    const dots: DotItem[] = new Array(totalDots);
+    let idx = 0;
     for (let y = 0; y < rows; y++) {
+      const cy = startY + y * cell;
       for (let x = 0; x < cols; x++) {
-        const cx = startX + x * cell;
-        const cy = startY + y * cell;
-        dots.push({ cx, cy, xOffset: 0, yOffset: 0, _inertiaApplied: false });
+        dots[idx++] = { cx: startX + x * cell, cy, xOffset: 0, yOffset: 0, _inertiaApplied: false };
       }
     }
     dotsRef.current = dots;
@@ -310,7 +311,9 @@ const DotGrid = ({
   }, [drawFrame, updateCachedRect]);
 
   useEffect(() => {
-    buildGrid();
+    const raf = requestAnimationFrame(() => {
+      buildGrid();
+    });
     let ro: ResizeObserver | null = null;
     if (typeof ResizeObserver !== 'undefined') {
       ro = new ResizeObserver(() => {
@@ -325,6 +328,7 @@ const DotGrid = ({
     window.addEventListener('scroll', updateCachedRect, { passive: true });
 
     return () => {
+      cancelAnimationFrame(raf);
       if (ro) ro.disconnect();
       else window.removeEventListener('resize', buildGrid);
       window.removeEventListener('scroll', updateCachedRect);

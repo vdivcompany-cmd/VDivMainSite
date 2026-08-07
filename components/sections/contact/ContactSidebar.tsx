@@ -16,15 +16,38 @@ const ContactNode3D = dynamic(
 
 export function ContactSidebar() {
   const t = useTranslations("ContactUs");
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktopReady, setIsDesktopReady] = useState(false);
 
   useEffect(() => {
     const mql = window.matchMedia("(min-width: 768px)");
-    setIsDesktop(mql.matches);
+    if (!mql.matches) return;
 
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    let cancelIdle: (() => void) | null = null;
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const id = (window as any).requestIdleCallback(
+          () => setIsDesktopReady(true),
+          { timeout: 1000 }
+        );
+        cancelIdle = () => (window as any).cancelIdleCallback(id);
+      } else {
+        const id = setTimeout(() => setIsDesktopReady(true), 150);
+        cancelIdle = () => clearTimeout(id);
+      }
+    }
+
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        setIsDesktopReady(true);
+      } else {
+        setIsDesktopReady(false);
+      }
+    };
     mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
+    return () => {
+      if (cancelIdle) cancelIdle();
+      mql.removeEventListener("change", handler);
+    };
   }, []);
 
   return (
@@ -33,7 +56,7 @@ export function ContactSidebar() {
         {/* 3D Interactive Location Node */}
         <div className="bg-surface-dim/40 backdrop-blur-xl rounded-xl overflow-hidden h-[360px] relative border border-primary/20 group">
           <div className="absolute inset-0 z-0">
-            {isDesktop ? (
+            {isDesktopReady ? (
               <ContactNode3D />
             ) : (
               <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-surface-dim to-surface-dim" />

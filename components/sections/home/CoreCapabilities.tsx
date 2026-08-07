@@ -20,9 +20,17 @@ export function CoreCapabilities() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && window.matchMedia("(min-width: 768px)").matches) {
-          import("@/components/ui/Threads").then((mod) => {
-            setThreadsComp(() => mod.default);
-          });
+          const loadThreads = () => {
+            import("@/components/ui/Threads").then((mod) => {
+              setThreadsComp(() => mod.default);
+            });
+          };
+
+          if ("requestIdleCallback" in window) {
+            (window as any).requestIdleCallback(loadThreads, { timeout: 1000 });
+          } else {
+            setTimeout(loadThreads, 50);
+          }
           observer.disconnect();
         }
       },
