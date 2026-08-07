@@ -1,495 +1,445 @@
 {
   "mobileResult": {
     "cpuThrottleRate": 4,
-    "totalMs": 4500.399,
-    "idleTime": 1857.4770000000015,
-    "activeJsMs": 1320.947999999998,
-    "totalBlockingTime": 1775.029999999999,
-    "longTasksCount": 14,
+    "totalMs": 4499.597,
+    "idleTime": 122.04300000000003,
+    "activeJsMs": 1792.3629999999991,
+    "totalBlockingTime": 3289.1089999999995,
+    "longTasksCount": 17,
     "longTasks": [
       {
-        "duration": 68.22899999999997,
-        "blocking": 18.22899999999997,
+        "duration": 130.6919999999999,
+        "blocking": 80.6919999999999,
         "topFns": [
           [
             "(program) @ internal:-1",
-            64.37299999999999
+            127.32999999999991
           ],
           [
-            "(anonymous) @ extensions::SafeBuiltins:0",
-            1.984
+            "saveBuiltin @ extensions::SafeBuiltins:24",
+            2.048
           ],
           [
             "(anonymous) @ extensions::SafeBuiltins:7",
-            0.734
-          ],
-          [
-            "(garbage collector) @ internal:-1",
-            0.573
-          ],
-          [
-            "Save @ internal:-1",
-            0.565
+            1.314
           ]
         ]
       },
       {
-        "duration": 83.61899999999996,
-        "blocking": 33.61899999999996,
+        "duration": 107.65699999999997,
+        "blocking": 57.65699999999997,
         "topFns": [
           [
             "(program) @ internal:-1",
-            71.63799999999998
-          ],
-          [
-            "(anonymous) @ en:0",
-            9.619000000000002
-          ],
-          [
-            "k @ en:0",
-            2.362
+            107.65699999999997
           ]
         ]
       },
       {
-        "duration": 244.62199999999987,
-        "blocking": 194.62199999999987,
+        "duration": 84.30799999999995,
+        "blocking": 34.30799999999995,
         "topFns": [
           [
             "(program) @ internal:-1",
-            201.39199999999994
+            43.907
           ],
           [
-            "(anonymous) @ turbopack-1wqdyk7i6uqot.js:0",
-            22.902
+            "(anonymous) @ turbopack-2iyoiymdhol_5.js:0",
+            22.480999999999998
           ],
           [
-            "i @ turbopack-1wqdyk7i6uqot.js:0",
-            5.389
+            "D @ turbopack-2iyoiymdhol_5.js:0",
+            3.7380000000000004
           ],
           [
-            "Q @ turbopack-1wqdyk7i6uqot.js:0",
-            2.9429999999999996
+            "F @ turbopack-2iyoiymdhol_5.js:0",
+            3.1029999999999998
           ],
           [
-            "X @ turbopack-1wqdyk7i6uqot.js:0",
-            1.9020000000000001
+            "registerChunk @ turbopack-2iyoiymdhol_5.js:0",
+            2.652
           ]
         ]
       },
       {
-        "duration": 797.4549999999998,
-        "blocking": 747.4549999999998,
+        "duration": 163.66399999999985,
+        "blocking": 113.66399999999985,
         "topFns": [
           [
             "(program) @ internal:-1",
-            389.545
-          ],
-          [
-            "Y @ turbopack-1wqdyk7i6uqot.js:0",
-            188.44499999999996
-          ],
-          [
-            "(anonymous) @ 2voogrsl_ut10.js:0",
-            45.199000000000005
-          ],
-          [
-            "(anonymous) @ 2vqsncqco3k01.js:0",
-            33.67399999999999
-          ],
-          [
-            "t @ 2vqsncqco3k01.js:0",
-            10.125999999999998
+            163.66399999999985
           ]
         ]
       },
       {
-        "duration": 103.89999999999999,
-        "blocking": 53.89999999999999,
+        "duration": 401.83400000000006,
+        "blocking": 351.83400000000006,
         "topFns": [
           [
             "(program) @ internal:-1",
-            35.881
-          ],
-          [
-            "(anonymous) @ 2voogrsl_ut10.js:0",
-            6.4780000000000015
-          ],
-          [
-            "sP @ 2voogrsl_ut10.js:0",
-            5.861
-          ],
-          [
-            "sg @ 2voogrsl_ut10.js:0",
-            5.251
-          ],
-          [
-            "ic @ 2voogrsl_ut10.js:0",
-            4.521
+            401.83400000000006
           ]
         ]
       },
       {
-        "duration": 278.4700000000001,
-        "blocking": 228.47000000000008,
+        "duration": 590.9470000000001,
+        "blocking": 540.9470000000001,
         "topFns": [
           [
             "(program) @ internal:-1",
-            164.44599999999994
-          ],
-          [
-            "Y @ turbopack-1wqdyk7i6uqot.js:0",
-            32.175999999999995
-          ],
-          [
-            "(anonymous) @ 1_xuplyh0z2v8.js:0",
-            9.672
-          ],
-          [
-            "aw @ 2voogrsl_ut10.js:0",
-            7.131000000000001
-          ],
-          [
-            "(anonymous) @ 12itiq7ci2nbn.js:0",
-            7.123999999999999
+            590.9470000000001
           ]
         ]
       },
       {
-        "duration": 55.28900000000001,
-        "blocking": 5.289000000000009,
-        "topFns": [
-          [
-            "Y @ turbopack-1wqdyk7i6uqot.js:0",
-            21.046999999999997
-          ],
-          [
-            "(anonymous) @ 0vg0hf857imr_.js:0",
-            5.958999999999999
-          ],
-          [
-            "(anonymous) @ 12itiq7ci2nbn.js:0",
-            5.302
-          ],
-          [
-            "(anonymous) @ 1_xuplyh0z2v8.js:0",
-            3.249
-          ],
-          [
-            "et @ 1_xuplyh0z2v8.js:0",
-            2.584
-          ]
-        ]
-      },
-      {
-        "duration": 381.7709999999995,
-        "blocking": 331.7709999999995,
+        "duration": 61.55500000000001,
+        "blocking": 11.555000000000007,
         "topFns": [
           [
             "(program) @ internal:-1",
-            65.94900000000001
-          ],
-          [
-            "(anonymous) @ 2vqsncqco3k01.js:0",
-            25.633000000000003
-          ],
-          [
-            "(anonymous) @ 0vg0hf857imr_.js:0",
-            20.125999999999994
-          ],
-          [
-            "(anonymous) @ 2voogrsl_ut10.js:0",
-            19.184
-          ],
-          [
-            "aw @ 2voogrsl_ut10.js:0",
-            15.933999999999997
+            61.55500000000001
           ]
         ]
       },
       {
-        "duration": 97.577,
-        "blocking": 47.577,
+        "duration": 119.26900000000002,
+        "blocking": 69.26900000000002,
         "topFns": [
           [
             "(program) @ internal:-1",
-            32.040000000000006
-          ],
-          [
-            "(anonymous) @ 2vqsncqco3k01.js:0",
-            7.452
-          ],
-          [
-            "ui @ 2voogrsl_ut10.js:0",
-            7.010999999999998
-          ],
-          [
-            "Y @ turbopack-1wqdyk7i6uqot.js:0",
-            3.934
-          ],
-          [
-            "ca @ 2voogrsl_ut10.js:0",
-            3.069
+            119.26900000000002
           ]
         ]
       },
       {
-        "duration": 51.834000000000024,
-        "blocking": 1.8340000000000245,
+        "duration": 70.16,
+        "blocking": 20.159999999999997,
         "topFns": [
           [
-            "(anonymous) @ 2vqsncqco3k01.js:0",
-            11.958
-          ],
-          [
             "(program) @ internal:-1",
-            11.849999999999998
-          ],
-          [
-            "fetch @ internal:-1",
-            4.617999999999999
-          ],
-          [
-            "(anonymous) @ 2voogrsl_ut10.js:0",
-            2.9899999999999998
-          ],
-          [
-            "f @ 2vqsncqco3k01.js:0",
-            2.9829999999999997
+            70.16
           ]
         ]
       },
       {
-        "duration": 76.32199999999995,
-        "blocking": 26.321999999999946,
+        "duration": 785.1549999999992,
+        "blocking": 735.1549999999992,
         "topFns": [
           [
+            "W @ turbopack-2iyoiymdhol_5.js:0",
+            540.2899999999993
+          ],
+          [
+            "(anonymous) @ 0iec5q4ack_04.js:0",
+            73.608
+          ],
+          [
+            "(anonymous) @ 10muk0s002m9w.js:0",
+            61.02699999999999
+          ],
+          [
+            "(anonymous) @ 3jvkbm-wxvaor.js:0",
+            24.453
+          ],
+          [
             "(program) @ internal:-1",
-            32.66799999999999
-          ],
-          [
-            "(anonymous) @ 2vqsncqco3k01.js:0",
-            10.383
-          ],
-          [
-            "fetch @ internal:-1",
-            3.457
-          ],
-          [
-            "(anonymous) @ 2voogrsl_ut10.js:0",
-            2.9240000000000004
-          ],
-          [
-            "(anonymous) @ 0l0-y7f-ptm-g.js:0",
-            2.331
+            18.108999999999998
           ]
         ]
       },
       {
-        "duration": 55.594999999999985,
-        "blocking": 5.594999999999985,
+        "duration": 67.558,
+        "blocking": 17.558000000000007,
         "topFns": [
           [
-            "(anonymous) @ 3xtut7hok1kou.js:0",
-            49.84399999999999
+            "t @ 10muk0s002m9w.js:0",
+            12.251999999999999
           ],
           [
             "(program) @ internal:-1",
-            1.7890000000000001
+            10.58
           ],
           [
-            "e @ 2voogrsl_ut10.js:0",
-            1.194
+            "(anonymous) @ 10muk0s002m9w.js:0",
+            9.872
           ],
           [
-            "uh @ 2voogrsl_ut10.js:0",
-            0.688
+            "c @ 10muk0s002m9w.js:0",
+            5.979
           ],
           [
-            "iy @ 2voogrsl_ut10.js:0",
-            0.668
+            "el @ 10muk0s002m9w.js:0",
+            5.321
           ]
         ]
       },
       {
-        "duration": 92.76299999999999,
-        "blocking": 42.76299999999999,
+        "duration": 444.97299999999996,
+        "blocking": 394.97299999999996,
         "topFns": [
           [
             "(program) @ internal:-1",
-            61.017999999999965
+            114.04400000000004
           ],
           [
-            "(anonymous) @ 3xtut7hok1kou.js:0",
-            15.729999999999999
+            "j @ 0iec5q4ack_04.js:0",
+            20.735999999999994
           ],
           [
-            "(anonymous) @ 2vqsncqco3k01.js:0",
-            2.9349999999999996
+            "iu @ 0iec5q4ack_04.js:0",
+            16.743000000000002
           ],
           [
-            "ui @ 2voogrsl_ut10.js:0",
-            1.65
+            "(anonymous) @ 0iec5q4ack_04.js:0",
+            14.06
           ],
           [
-            "w @ 2vqsncqco3k01.js:0",
-            1.1949999999999998
+            "(anonymous) @ 10muk0s002m9w.js:0",
+            11.754999999999999
           ]
         ]
       },
       {
-        "duration": 87.584,
-        "blocking": 37.584,
+        "duration": 74.33799999999998,
+        "blocking": 24.33799999999998,
+        "topFns": [
+          [
+            "(anonymous) @ 0iec5q4ack_04.js:0",
+            15.66
+          ],
+          [
+            "(program) @ internal:-1",
+            12.938
+          ],
+          [
+            "iu @ 0iec5q4ack_04.js:0",
+            6.809
+          ],
+          [
+            "L @ 0iec5q4ack_04.js:0",
+            6.416
+          ],
+          [
+            "ay @ 0iec5q4ack_04.js:0",
+            5.726999999999999
+          ]
+        ]
+      },
+      {
+        "duration": 129.908,
+        "blocking": 79.90799999999999,
         "topFns": [
           [
             "(program) @ internal:-1",
-            55.714000000000006
+            46.365999999999985
           ],
           [
-            "(anonymous) @ 2vqsncqco3k01.js:0",
-            7.710999999999999
+            "iu @ 0iec5q4ack_04.js:0",
+            14.289999999999997
           ],
           [
-            "fetch @ internal:-1",
-            4.572
+            "ay @ 0iec5q4ack_04.js:0",
+            11.264999999999999
           ],
           [
-            "appendChild @ internal:-1",
-            2.9939999999999998
+            "W @ turbopack-2iyoiymdhol_5.js:0",
+            9.851
           ],
           [
-            "t @ 2vqsncqco3k01.js:0",
-            1.677
+            "(anonymous) @ 0iec5q4ack_04.js:0",
+            9.183
+          ]
+        ]
+      },
+      {
+        "duration": 717.0020000000006,
+        "blocking": 667.0020000000006,
+        "topFns": [
+          [
+            "(program) @ internal:-1",
+            506.696
+          ],
+          [
+            "W @ turbopack-2iyoiymdhol_5.js:0",
+            62.17599999999999
+          ],
+          [
+            "ay @ 0iec5q4ack_04.js:0",
+            19.031000000000002
+          ],
+          [
+            "(anonymous) @ 1r076xv8jtliu.js:2",
+            15.691
+          ],
+          [
+            "(anonymous) @ 22m7nrykimweq.js:0",
+            11.352
+          ]
+        ]
+      },
+      {
+        "duration": 90.68299999999998,
+        "blocking": 40.68299999999998,
+        "topFns": [
+          [
+            "W @ turbopack-2iyoiymdhol_5.js:0",
+            34.894
+          ],
+          [
+            "(anonymous) @ 1r076xv8jtliu.js:2",
+            6.783000000000001
+          ],
+          [
+            "(anonymous) @ 22m7nrykimweq.js:2",
+            5.558000000000001
+          ],
+          [
+            "useMemo @ 0iec5q4ack_04.js:0",
+            5.476
+          ],
+          [
+            "m @ 22m7nrykimweq.js:2",
+            5.196000000000001
+          ]
+        ]
+      },
+      {
+        "duration": 99.406,
+        "blocking": 49.406000000000006,
+        "topFns": [
+          [
+            "(anonymous) @ 1r076xv8jtliu.js:2",
+            21.833000000000006
+          ],
+          [
+            "ay @ 0iec5q4ack_04.js:0",
+            16.389
+          ],
+          [
+            "(program) @ internal:-1",
+            12.301
+          ],
+          [
+            "(anonymous) @ 1r076xv8jtliu.js:1",
+            6.1080000000000005
+          ],
+          [
+            "Y.config @ 1r076xv8jtliu.js:1",
+            4.706
           ]
         ]
       }
     ],
     "topFns": [
       [
-        "Y @ turbopack-1wqdyk7i6uqot.js:0",
-        252.76200000000017
+        "W @ turbopack-2iyoiymdhol_5.js:0",
+        647.2109999999989
       ],
       [
-        "(anonymous) @ 2vqsncqco3k01.js:0",
-        114.19399999999992
+        "(anonymous) @ 0iec5q4ack_04.js:0",
+        124.72300000000008
       ],
       [
-        "(anonymous) @ 2voogrsl_ut10.js:0",
-        86.12099999999992
+        "(anonymous) @ 10muk0s002m9w.js:0",
+        84.54300000000003
       ],
       [
-        "(anonymous) @ 3xtut7hok1kou.js:0",
-        69.88599999999998
+        "ay @ 0iec5q4ack_04.js:0",
+        60.65799999999999
       ],
       [
-        "(anonymous) @ 0vg0hf857imr_.js:0",
-        32.57299999999999
+        "iu @ 0iec5q4ack_04.js:0",
+        54.35400000000002
       ],
       [
-        "aw @ 2voogrsl_ut10.js:0",
-        28.821000000000005
+        "(anonymous) @ 1r076xv8jtliu.js:2",
+        44.30700000000001
       ],
       [
-        "(anonymous) @ turbopack-1wqdyk7i6uqot.js:0",
-        27.683
+        "(anonymous) @ turbopack-2iyoiymdhol_5.js:0",
+        38.81
       ],
       [
-        "ic @ 2voogrsl_ut10.js:0",
-        24.235000000000003
+        "(anonymous) @ 3jvkbm-wxvaor.js:0",
+        24.453
       ],
       [
-        "fetch @ internal:-1",
-        23.429999999999996
+        "j @ 0iec5q4ack_04.js:0",
+        20.735999999999994
       ],
       [
-        "(anonymous) @ 12itiq7ci2nbn.js:0",
-        22.736000000000004
+        "i @ 0iec5q4ack_04.js:0",
+        19.834000000000003
       ],
       [
-        "(anonymous) @ 0l0-y7f-ptm-g.js:0",
-        20.354
+        "(anonymous) @ en:0",
+        19.27
       ],
       [
-        "(anonymous) @ 1_xuplyh0z2v8.js:0",
-        18.097
+        "t @ 10muk0s002m9w.js:0",
+        18.063000000000002
       ],
       [
-        "t @ 2vqsncqco3k01.js:0",
-        14.668999999999997
+        "el @ 10muk0s002m9w.js:0",
+        17.19
       ],
       [
-        "ui @ 2voogrsl_ut10.js:0",
-        13.503999999999998
+        "sd @ 0iec5q4ack_04.js:0",
+        16.659999999999997
       ],
       [
-        "(anonymous) @ 3xmvxw2s_brwz.js:0",
-        12.488999999999997
+        "useMemo @ 0iec5q4ack_04.js:0",
+        16.102000000000004
       ]
     ],
     "topChunks": [
       [
-        "2voogrsl_ut10.js",
-        398.2639999999999
+        "turbopack-2iyoiymdhol_5.js",
+        731.4619999999995
       ],
       [
-        "turbopack-1wqdyk7i6uqot.js",
-        325.61
+        "0iec5q4ack_04.js",
+        570.8459999999992
       ],
       [
-        "2vqsncqco3k01.js",
-        279.467
+        "10muk0s002m9w.js",
+        255.87399999999988
       ],
       [
-        "3xtut7hok1kou.js",
-        71.826
+        "1r076xv8jtliu.js",
+        78.39599999999999
       ],
       [
-        "0vg0hf857imr_.js",
-        51.99400000000004
+        "3jvkbm-wxvaor.js",
+        54.77499999999999
       ],
       [
-        "inline/eval",
-        48.342
-      ],
-      [
-        "0l0-y7f-ptm-g.js",
-        43.74999999999998
-      ],
-      [
-        "1_xuplyh0z2v8.js",
-        39.68800000000001
-      ],
-      [
-        "12itiq7ci2nbn.js",
-        27.497999999999998
-      ],
-      [
-        "3xmvxw2s_brwz.js",
-        12.988999999999997
+        "22m7nrykimweq.js",
+        38.466
       ],
       [
         "en",
-        12.504000000000003
+        23.169000000000004
       ],
       [
-        "0dhgzifx5-hej.js",
-        3.4169999999999994
+        "inline/eval",
+        19.672
+      ],
+      [
+        "14mrh2-p_w84d.js",
+        13.042
       ],
       [
         "extensions::SafeBuiltins",
-        2.718
+        3.362
       ],
       [
-        "0t8qwophcappl.js",
-        1.24
+        "05-c3ty_6dwfk.js",
+        2.6500000000000004
       ],
       [
-        "25ucyzjxcb5nz.js",
-        1.0939999999999999
-      ],
-      [
-        "0t7-4b-4h_4qf.js",
-        0.547
+        "3-7rn4derymgy.js",
+        0.649
       ]
     ]
   }
