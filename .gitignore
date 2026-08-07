@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# test / chrome profiles & profiling results
+.chrome*
+*.cpuprofile
+*_profile_results.json
