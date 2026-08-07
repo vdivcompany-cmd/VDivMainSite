@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'gsap', '@gsap/react', 'ogl', 'three', 'lenis'],
+    optimizePackageImports: ['lucide-react', 'ogl', 'lenis'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],

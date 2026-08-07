@@ -225,7 +225,7 @@ const DotGrid = ({
     const loop = () => {
       drawFrame();
 
-      // Only continue RAF loop if there are active GSAP inertia animations running
+      // Only continue RAF loop if there are active inertia animations running
       if (activeTweensRef.current > 0) {
         rafIdRef.current = requestAnimationFrame(loop);
       } else {
