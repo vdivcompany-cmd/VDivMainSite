@@ -41,7 +41,7 @@ export function Reveal({
 
     gsap.fromTo(
       containerRef.current,
-      { opacity: 0, x, y, willChange: "transform, opacity" },
+      { opacity: 0, x, y },
       {
         opacity: 1,
         x: 0,
@@ -50,6 +50,7 @@ export function Reveal({
         delay,
         ease: "power3.out",
         force3D: true,
+        clearProps: "transform",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 85%",

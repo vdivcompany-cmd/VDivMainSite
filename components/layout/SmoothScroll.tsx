@@ -21,13 +21,23 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (isProgrammaticPage) return;
 
+    // Detect touch / mobile devices - keep native hardware-accelerated smooth scrolling
+    const isTouchDevice = typeof window !== 'undefined' && 
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches);
+
+    if (isTouchDevice) {
+      // Ensure ScrollTrigger uses native scroll on mobile
+      ScrollTrigger.update();
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 2,
+      autoRaf: true,
     });
 
     lenisRef.current = lenis;
@@ -35,18 +45,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
-    // Add Lenis's requestAnimationFrame to GSAP's ticker
-    const raf = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-    gsap.ticker.add(raf);
-
-    // Disable GSAP lag smoothing so it doesn't conflict with Lenis
-    gsap.ticker.lagSmoothing(0);
-
     return () => {
-      // Clean up GSAP ticker and Lenis
-      gsap.ticker.remove(raf);
       lenis.destroy();
       lenisRef.current = null;
     };

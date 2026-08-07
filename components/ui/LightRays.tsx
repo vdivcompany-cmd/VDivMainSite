@@ -243,7 +243,7 @@ void main() {
       const updatePlacement = () => {
         if (!containerRef.current || !renderer) return;
 
-        renderer.dpr = Math.min(window.devicePixelRatio, 2);
+        renderer.dpr = Math.min(window.devicePixelRatio || 1, 1.2);
 
         const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
         renderer.setSize(wCSS, hCSS);
@@ -259,10 +259,25 @@ void main() {
         uniforms.rayDir.value = dir;
       };
 
+      let lastTime = 0;
+      const targetInterval = 1000 / 30; // 30 FPS for ambient background shader
+
       const loop = (t: number) => {
         if (!rendererRef.current || !uniformsRef.current || !meshRef.current) {
           return;
         }
+
+        if (document.hidden) {
+          animationIdRef.current = requestAnimationFrame(loop);
+          return;
+        }
+
+        const elapsed = t - lastTime;
+        if (elapsed < targetInterval) {
+          animationIdRef.current = requestAnimationFrame(loop);
+          return;
+        }
+        lastTime = t - (elapsed % targetInterval);
 
         uniforms.iTime.value = t * 0.001;
 
