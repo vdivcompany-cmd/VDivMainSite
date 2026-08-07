@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { Reveal } from "@/components/ui/Reveal";
@@ -12,21 +13,35 @@ const DotGrid = dynamic(() => import("@/components/ui/DotGrid"), {
 
 export function AboutHero() {
   const t = useTranslations("AboutHero");
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mql.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   return (
     <section className="relative min-h-[716px] flex items-center overflow-hidden border-b border-outline-variant/10">
       <div className="absolute inset-0 z-0">
-        <DotGrid
-          dotSize={2}
-          gap={20}
-          baseColor="#494551"
-          activeColor="#cfbdff"
-          proximity={120}
-          shockRadius={250}
-          shockStrength={5}
-          resistance={750}
-          returnDuration={1.5}
-        />
+        {isDesktop ? (
+          <DotGrid
+            dotSize={2}
+            gap={20}
+            baseColor="#494551"
+            activeColor="#cfbdff"
+            proximity={120}
+            shockRadius={250}
+            shockStrength={5}
+            resistance={750}
+            returnDuration={1.5}
+          />
+        ) : (
+          <div className="w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/15 via-surface-container/20 to-transparent" />
+        )}
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[120px] animate-pulse pointer-events-none"></div>
         <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-tertiary/5 rounded-full blur-[150px] pointer-events-none"></div>
       </div>

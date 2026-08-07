@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useTranslations, useLocale } from "next-intl";
@@ -16,21 +17,35 @@ export function AboutRedesignHero() {
   const t = useTranslations("AboutRedesign");
   const locale = useLocale();
   const isArabic = locale === 'ar';
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mql.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   return (
     <section className="relative min-h-[90vh] flex items-center px-margin-mobile md:px-margin-desktop bg-surface-dim overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#cfbcff"
-          raysSpeed={1.5}
-          lightSpread={0.8}
-          rayLength={1.5}
-          followMouse={true}
-          mouseInfluence={0.1}
-          noiseAmount={0.1}
-          distortion={0.05}
-        />
+        {isDesktop ? (
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#cfbcff"
+            raysSpeed={1.5}
+            lightSpread={0.8}
+            rayLength={1.5}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0.1}
+            distortion={0.05}
+          />
+        ) : (
+          <div className="w-full h-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(207,188,255,0.15),rgba(255,255,255,0))]" />
+        )}
       </div>
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-xl items-center py-xl relative z-10">
 

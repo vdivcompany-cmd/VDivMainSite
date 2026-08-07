@@ -14,9 +14,12 @@ export function CoreCapabilities() {
     const el = sectionRef.current;
     if (!el) return;
 
+    const mql = window.matchMedia("(min-width: 768px)");
+    if (!mql.matches) return; // Do not download or initialize Threads on mobile
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && window.matchMedia("(min-width: 768px)").matches) {
           import("@/components/ui/Threads").then((mod) => {
             setThreadsComp(() => mod.default);
           });
@@ -33,13 +36,15 @@ export function CoreCapabilities() {
   return (
     <section ref={sectionRef} className="relative py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low/50 overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-40">
-        {ThreadsComp && (
+        {ThreadsComp ? (
           <ThreadsComp
             amplitude={1.5}
             distance={0}
             enableMouseInteraction={true}
             color={[0.81, 0.74, 1.0]}
           />
+        ) : (
+          <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-tertiary/5 to-transparent pointer-events-none" />
         )}
       </div>
       <div className="relative z-10 max-w-7xl mx-auto">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Satellite, MapPin, Mail } from "lucide-react";
@@ -15,6 +16,16 @@ const ContactNode3D = dynamic(
 
 export function ContactSidebar() {
   const t = useTranslations("ContactUs");
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mql.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   return (
     <aside className="lg:col-span-5 space-y-gutter">
@@ -22,7 +33,11 @@ export function ContactSidebar() {
         {/* 3D Interactive Location Node */}
         <div className="bg-surface-dim/40 backdrop-blur-xl rounded-xl overflow-hidden h-[360px] relative border border-primary/20 group">
           <div className="absolute inset-0 z-0">
-            <ContactNode3D />
+            {isDesktop ? (
+              <ContactNode3D />
+            ) : (
+              <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/15 via-surface-dim to-surface-dim" />
+            )}
           </div>
 
           <div className="absolute inset-0 pointer-events-none p-lg flex flex-col justify-between z-10">
