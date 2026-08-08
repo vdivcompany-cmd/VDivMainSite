@@ -1,6 +1,5 @@
 'use client';
 import { useRef, useEffect, useCallback, useMemo } from 'react';
-import './DotGrid.css';
 
 function easeOutQuad(t: number): number {
   return 1 - (1 - t) * (1 - t);
@@ -466,9 +465,9 @@ const DotGrid = ({
   }, [maxSpeed, speedTrigger, proximity, returnDuration, shockRadius, shockStrength, requestRender]);
 
   return (
-    <section className={`dot-grid ${className}`} style={style}>
-      <div ref={wrapperRef} className="dot-grid__wrap">
-        <canvas ref={canvasRef} className="dot-grid__canvas" />
+    <section className={`flex items-center justify-center h-full w-full relative ${className}`} style={style}>
+      <div ref={wrapperRef} className="w-full h-full relative">
+        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
       </div>
     </section>
   );
