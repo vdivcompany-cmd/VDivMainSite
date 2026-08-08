@@ -6,12 +6,12 @@ import dynamic from "next/dynamic";
 import { useTranslations, useLocale } from "next-intl";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowRight } from "lucide-react";
-import Marquee from "react-fast-marquee";
-
 const LightRays = dynamic(() => import("@/components/ui/LightRays"), {
   ssr: false,
   loading: () => <div className="w-full h-full" />,
 });
+
+const Marquee = dynamic(() => import("react-fast-marquee"), { ssr: false });
 
 export function AboutRedesignHero() {
   const t = useTranslations("AboutRedesign");

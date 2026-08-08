@@ -2,8 +2,6 @@
 import { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
 
-import './Threads.css';
-
 const vertexShader = `
 attribute vec2 position;
 attribute vec2 uv;
@@ -322,7 +320,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     };
   }, []);
 
-  return <div ref={containerRef} className="threads-container" {...rest} />;
+  return <div ref={containerRef} className="relative w-full h-full" {...rest} />;
 };
 
 export default Threads;
